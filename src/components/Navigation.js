@@ -14,7 +14,7 @@ class Navigation extends Component{
                 <div >
                     <ul id="navbar" className={this.state.clicked ? "#navbar active" : "#navbar"}>
                         <li className="active"> <Link to="/" className="text"> Home</Link> </li>
-                        <li> <Link to="" className="text"> About</Link> </li>
+                        <li> <Link to="/about" className="text"> About</Link> </li>
                         <li> <Link to="/login" className="text"> <i className="fa fa-user-circle"></i> Login</Link> </li>
                     </ul>
                 </div>
