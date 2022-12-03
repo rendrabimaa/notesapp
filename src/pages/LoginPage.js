@@ -1,7 +1,6 @@
 import React from "react";
 import Navigation from "../components/Navigation";
 import LoginForm from "../components/LoginForm";
-import { Link } from "react-router-dom";
 
 function LoginPage() {
   function onLoginHandler(user) {
@@ -12,13 +11,8 @@ function LoginPage() {
   return (
     <>
       <Navigation />
-      <section className="login-page">
-        <div className="container-login">
-          <h2>NOTE IT!</h2>
+      <section>
           <LoginForm login={onLoginHandler} />
-          <p>Dont have an account?</p>
-          <Link to="/signup">Create Account</Link>
-        </div>
       </section>
     </>
   )

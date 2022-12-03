@@ -8,7 +8,7 @@ function LandingPageBody() {
                 <h3> CORNELL NOTE TAKING </h3>
                 <span> A METHOD TO TAKE GREAT NOTES</span>
                 <p> </p>
-                <a href="/" className="button" > Get Started</a>
+                <a href="/" className="button-home" > Get Started</a>
             </div>
             <div className="overlay"></div>
             

@@ -4,10 +4,10 @@ import AboutCard from "./AboutCard";
 function AboutBio() {
   return (
     <div className="about-bio">
-      <AboutCard name="Agi Sahriza" img="Gambar 1.jpg" />
-      <AboutCard name="Noviana" img="Gambar 1.jpg" />
-      <AboutCard name="Arin Novia" img="Gambar 1.jpg" />
-      <AboutCard name="Alfin Wahyu" img="Gambar 1.jpg" />
+      <AboutCard name="Agi Sahriza" img="orang.jpg" />
+      <AboutCard name="Noviana" img="orang.jpg" />
+      <AboutCard name="Arin Novia" img="orang.jpg" />
+      <AboutCard name="Alfin Wahyu" img="orang.jpg" />
     </div>  
   )
 }
