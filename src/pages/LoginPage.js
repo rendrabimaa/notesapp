@@ -8,11 +8,17 @@ function LoginPage() {
     console.log(`Passowrd: ${user.password}`);
   }
 
+  function onSignUpHandler(user) {
+    console.log(`Name: ${user.name}`);
+    console.log(`Email: ${user.email}`);
+    console.log(`Passowrd: ${user.password}`);
+  }
+
   return (
     <>
       <Navigation />
       <section>
-          <LoginForm login={onLoginHandler} />
+          <LoginForm login={onLoginHandler} signUp={onSignUpHandler} />
       </section>
     </>
   )

@@ -3,7 +3,7 @@ import useInput from "../hooks/useInput";
 import PropTypes from "prop-types";
 import SignUpForm from "./SignUpForm";
 
-function LoginForm({ login }) {
+function LoginForm({ login, signUp }) {
   const [email, handleEmailChange] = useInput("");
   const [password, handlePasswordChange] = useInput("");
 
@@ -57,7 +57,7 @@ function LoginForm({ login }) {
                 </div>
               </form>
             </div>
-            <SignUpForm />
+            <SignUpForm signUp={signUp} />
           </div>
         </div>
       </div>
