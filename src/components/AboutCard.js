@@ -9,6 +9,7 @@ function AboutCard({name, img, instagram, linkedin}) {
       <div>
         <Link to={linkedin}><i class="fa-brands fa-linkedin"></i></Link>
         <Link to={instagram}><i class="fa-brands fa-square-instagram"></i></Link>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
       </div>
     </div>
   )
