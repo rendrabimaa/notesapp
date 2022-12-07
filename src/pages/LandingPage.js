@@ -37,8 +37,8 @@ function LandingPage() {
             <LandingPageSection2 
             image={"Upload-bro.png"}
             title={"Export your Notes "}
-                subtitle={"At any time, you can print your notes or export them as PDF to share with others or review outside of the app such as in Preview, or on another device"}
-                subtitle2={" Exported sheets are full-spec two-column Cornell notes, including the title, notes, and summary, and can be multiple pages."}
+                subtitle={"At any time, you can print your notes or export them as PDF to share with others or review outside of the app such as in Preview, or on another device. You can easily export your notes with Note IT!"}
+                subtitle2={"Exported sheets are full-spec two-column Cornell notes, including the title, notes, and summary, and can be multiple pages."}
 
             />
             <LandingPageSection3 />

@@ -334,12 +334,14 @@ section {
 /* FOOTER */
 .footer {
   padding-bottom: 1rem;
+  background-color: #f5f5f5;
 }
 
 .footer .box-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
+  padding-left: 3rem;
 }
 
 .footer .box-container .box {
@@ -378,6 +380,7 @@ section {
 /* About Page */
 .about-page {
   margin-top: 60px;
+  background-color: white;
 }
 
 .about-page .about-text {
@@ -445,7 +448,7 @@ section {
   position: relative;
   max-width: 1200px;
   width: 100%;
-  background: #fff;
+  background: white;
   padding: 40px 30px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   perspective: 2700px;

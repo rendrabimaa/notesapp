@@ -1,6 +1,7 @@
 import React from "react";
 import Navigation from "../components/Navigation";
 import LoginForm from "../components/LoginForm";
+import LandingPageFooter from "../components/Footer";
 
 function LoginPage() {
   function onLoginHandler(user) {
@@ -20,6 +21,7 @@ function LoginPage() {
       <section>
           <LoginForm login={onLoginHandler} signUp={onSignUpHandler} />
       </section>
+      <LandingPageFooter/>
     </>
   )
 }
