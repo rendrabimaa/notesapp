@@ -666,22 +666,21 @@ section {
 
 .addnote-page{
   background-color: #F3F3F3;
-  
-
 }
+
 .container-addnote {
   display: grid;
-  height: 100vh;
+  height: 120vh;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 0.2fr 2fr 1fr;
+  grid-template-rows: 0.2fr 2fr 1fr 0.2fr;
   grid-template-areas:
-    "title title title "
-    "cue note note "
-    "summary summary summary ";
+    "title title  "
+    "cue note  "
+    "summary summary  "
+    "buttonn buttonn ";
   grid-gap: 0rem;
   font-weight: 800;
   font-size: 12px;
-  color: #004d40;
   text-align: center;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
@@ -696,29 +695,36 @@ section {
   border-bottom: 3px solid black;
 }
 
+.cue-columns {
+  background: white;
+  grid-area: cue;
+  padding-top: 60px;
+  min-height: 350px;
+  border-right: 3px solid black;
+}
 
 .note-columns{
   background: white;
   grid-area: note;
-  padding-top: 5px;
-  
+  padding-top: 60px;
+  min-height: 350px;
 }
 
-.cue-columns {
+.summary {
   background: white;
-  grid-area: cue;
-  padding-top: 5px;
-  border-right: 3px solid black;
-}
-
-.summary-note {
-  background: white;
-  grid-area: title;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  padding-top: 50px;
-  min-height: 100px;
+  grid-area: summary;
+  padding-top: 60px;
+  min-height: 300px;
   border-bottom: 3px solid black;
+  border-top: 3px solid black;
+}
+
+.note-button{
+  background: white;
+  min-height: 50px;
+  grid-area: buttonn;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .input-field{
@@ -756,7 +762,8 @@ section {
   transition: 0.3s ease;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 50px;
+
+  
 }
 
 .input-notee{
@@ -769,7 +776,7 @@ section {
   transition: 0.3s ease;
   padding-left: 20px;
   padding-right: 20px;
-  padding-top: 50px;
+  
 }
 .input-label{
   display: block;
@@ -785,7 +792,7 @@ section {
 .input-label-summary{
   display: block;
   position: absolute;
-  top:560px;
+  top:640px;
   font-size: 2em;
   color:black;
   text-transform: uppercase;
@@ -837,15 +844,31 @@ section {
 }
 
 
-.summary {
-  grid-area: summary;
+.button-sec{
+  background-color: white;
+  grid-area: buttonn;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  border-top: 3px solid black;
 }
 
 textarea{
   resize: none;
+}
+
+.note-button {
+  background-color: black; 
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 10px 2px;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 2px;
 }
 
 
@@ -926,25 +949,34 @@ textarea{
     "title"
     "cue"
     "note"
-    "summary ";
+    "summary "
+    "buttonn";
   }
 
   .cue-columns{
     border-bottom: 3px solid black;
     border-right: 0px;
+    min-height: 500px;
   }
 
+  .note-columns{
+    min-height: 500px;
+  }
   .input-label-summary{
-    top:980px;
+    top:1145px;
   }
 
   .input-label-note{
-    top:560px;
+    top:650px;
   }
 
   .addnote-page{
-    height: 1300px;
+    height: 1500px;
   
+  }
+
+  .summary{
+    height: 300px;
   }
 }
 

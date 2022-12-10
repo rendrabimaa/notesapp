@@ -21,8 +21,8 @@ function LandingPageFooter(){
 
         <div class="box">
             <h3>Other</h3>
-            <a href="https://www.dicoding.com/">Dicoding</a>
-            <a href="https://kampusmerdeka.kemdikbud.go.id/">Kampus Merdeka</a>
+            <a href="https://www.dicoding.com/" target="_blank" rel="noreferrer">Dicoding</a>
+            <a href="https://kampusmerdeka.kemdikbud.go.id/" target="_blank" rel="noreferrer">Kampus Merdeka</a>
         </div>
 
     </div>
