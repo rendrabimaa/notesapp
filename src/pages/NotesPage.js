@@ -1,6 +1,7 @@
 import React from "react";
 import NavigationLogin from "../components/NavigationLogin";
 import NoteItem from "../components/NoteItem";
+import { Link } from "react-router-dom";
 import Select from 'react-select'
 
 function NotesPage({ user, setUser }) {
@@ -38,7 +39,7 @@ function NotesPage({ user, setUser }) {
             />
           </div>
           <div className="add-container">
-            <button><i class="fa-solid fa-plus"></i> Add new note</button>
+            <Link to="/notes/add"><i class="fa-solid fa-plus"></i> Add new note</Link>
           </div>
         </div>
         <div className="notes-container">

@@ -10,7 +10,7 @@ class Navigation extends Component{
         return(
             
             <nav>
-                <a href="/" ><img src="Logo.png" alt="Logo" className="logoNav"></img></a>
+                <Link to="/" ><img src="Logo.png" alt="Logo" className="logoNav"></img></Link>
                 <div >
                     <ul id="navbar" className={this.state.clicked ? "#navbar active" : "#navbar"}>
                         <li className="active"> <Link to="/" className="text"> Home</Link> </li>
