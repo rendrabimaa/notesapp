@@ -433,6 +433,7 @@ section {
 }
 
 /* LOGIN REGISTER PAGE */
+
 .loginnnn {
   min-height: 100vh;
   display: flex;
@@ -661,6 +662,194 @@ section {
   display: none;
 }
 
+/* ADD NOTE PAGE */
+
+.addnote-page{
+  background-color: #F3F3F3;
+  
+
+}
+.container-addnote {
+  display: grid;
+  height: 100vh;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 0.2fr 2fr 1fr;
+  grid-template-areas:
+    "title title title "
+    "cue note note "
+    "summary summary summary ";
+  grid-gap: 0rem;
+  font-weight: 800;
+  font-size: 12px;
+  color: #004d40;
+  text-align: center;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.title-addnote {
+  background: white;
+  grid-area: title;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-top: 50px;
+  min-height: 100px;
+  border-bottom: 3px solid black;
+}
+
+
+.note-columns{
+  background: white;
+  grid-area: note;
+  padding-top: 5px;
+  
+}
+
+.cue-columns {
+  background: white;
+  grid-area: cue;
+  padding-top: 5px;
+  border-right: 3px solid black;
+}
+
+.summary-note {
+  background: white;
+  grid-area: title;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-top: 50px;
+  min-height: 100px;
+  border-bottom: 3px solid black;
+}
+
+.input-field{
+  width: 100%;
+  outline: 0;
+  border: 0;
+  border-bottom: 2px solid black;
+  padding: 10px 0;
+  background: transparent;
+  font-size: 2em;
+  color: black;
+  transition: 0.3s ease;
+  padding-left: 20px;
+}
+
+.input-summary{
+  width: 100%;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  font-size: 2em;
+  color: black;
+  transition: 0.3s ease;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.input-cue{
+  width: 100%;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  font-size: 2em;
+  color: black;
+  transition: 0.3s ease;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 50px;
+}
+
+.input-notee{
+  width: 100%;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  font-size: 2em;
+  color: black;
+  transition: 0.3s ease;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 50px;
+}
+.input-label{
+  display: block;
+  position: absolute;
+  top: 60px;
+  font-size: 2em;
+  color: black;
+  text-transform: uppercase;
+  transition: 0.3s ease;
+  margin-left: 20px;
+}
+
+.input-label-summary{
+  display: block;
+  position: absolute;
+  top:560px;
+  font-size: 2em;
+  color:black;
+  text-transform: uppercase;
+  transition: 0.3s ease;
+  margin-left: 20px;
+}
+
+.input-label-cue{
+  display: block;
+  position: absolute;
+  top:150px;
+  font-size: 2em;
+  color:black;
+  text-transform: uppercase;
+  transition: 0.3s ease;
+  margin-left: 20px;
+}
+
+
+.input-label-note{
+  display: block;
+  position: absolute;
+  top:150px;
+  font-size: 2em;
+  color:black;
+  text-transform: uppercase;
+  transition: 0.3s ease;
+  margin-left: 20px;
+}
+.input-field::placeholder{
+  color: transparent;
+}
+
+.input-summary::placeholder{
+  color: transparent;
+}
+
+.input-field::placeholder-shown ~ .input-label{
+  font-size:  2em;
+  top: 20px;
+}
+
+.input-field:focus ~ .input-label{
+  display: block;
+  position: absolute;
+  top: 40px;
+  font-size: 2em;
+  color: black;
+}
+
+
+.summary {
+  grid-area: summary;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-top: 3px solid black;
+}
+
+textarea{
+  resize: none;
+}
+
+
+
 @media (max-width: 730px) {
   .container .cover {
     display: none;
@@ -730,5 +919,33 @@ section {
   .about-page .about-bio {
     grid-template-columns: 1fr;
   }
+
+  .container-addnote {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+    "title"
+    "cue"
+    "note"
+    "summary ";
+  }
+
+  .cue-columns{
+    border-bottom: 3px solid black;
+    border-right: 0px;
+  }
+
+  .input-label-summary{
+    top:980px;
+  }
+
+  .input-label-note{
+    top:560px;
+  }
+
+  .addnote-page{
+    height: 1300px;
+  
+  }
 }
+
 

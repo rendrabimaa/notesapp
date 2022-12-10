@@ -43,9 +43,6 @@ function LandingPageSection3() {
                     </span>
                 </div>
             </div>
-
-
-
         </section>
 
     )
