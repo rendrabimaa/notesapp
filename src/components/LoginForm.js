@@ -24,14 +24,14 @@ function LoginForm({ login, signUp }) {
           <div className="front">
             <img src="Gambar 1.jpg" alt="" />
             <div className="text">
-              <span className="text-1">Cornell Note Taking <br /> A Method to take</span>
-              <span className="text-2">great notes</span>
+              <span className="text-1">Note IT! <br /> Take the best notes</span>
+              <span className="text-2">Let's get started</span>
             </div>
           </div>
           <div className="back">
             <img className="backImg" src="Gambar 1.jpg" alt="" />
             <div className="text">
-              <span className="text-1">Complete miles of journey <br /> with one step</span>
+              <span className="text-1">Note IT! <br />Take the best notes</span>
               <span className="text-2">Let's get started</span>
             </div>
           </div>

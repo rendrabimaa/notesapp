@@ -2,22 +2,18 @@ import React from "react";
 import LandingPage from "../pages/LandingPage";
 import About from "../pages/About";
 import LoginPage from "../pages/LoginPage";
-import SignUpPage from "../pages/SignUpPage";
 import { Route, Routes } from "react-router-dom";
 import { getUserLogged, putAccessToken } from "../utils/api";
-import { useNavigate } from "react-router-dom";
 import NotesPage from "../pages/NotesPage";
+import AddNotePage from "../pages/AddNotePage";
 
 function NoteApp() {
-  const navigate = useNavigate();
-
   const [authedUser, setAuthedUser] = React.useState(null);
   const [initializing, setInitializing] = React.useState(true);
 
   React.useEffect(() => {
     async function fetchAuthedUserData() {
       const { data } = await getUserLogged();
-      const tes = await getUserLogged();
 
       setAuthedUser(data);
       setInitializing(false);
@@ -31,11 +27,6 @@ function NoteApp() {
 
     setAuthedUser(data);
   }
-  
-  function onLogout() {
-    setAuthedUser(null);
-    putAccessToken("");
-  }
 
   if (initializing) {
     return null;
@@ -47,7 +38,6 @@ function NoteApp() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<LoginPage loginSuccess={onLoginSuccess} />} />
-        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     );
   }
@@ -55,6 +45,7 @@ function NoteApp() {
   return (
     <Routes>
       <Route path="/*" element={<NotesPage user={authedUser} setUser={setAuthedUser} />} />
+      <Route path="/notes/add" element={<AddNotePage user={authedUser} setUser={setAuthedUser} />} />
     </Routes>
   );
 }

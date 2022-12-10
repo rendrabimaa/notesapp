@@ -2,31 +2,27 @@ import React from "react";
 
 function LandingPageFooter(){
     return(
-        <section class="footer">
-
+    <section class="footer">
     <div class="box-container">
-
         <div class="box">
             <h3>Navigation</h3>
-            <a href="/">home</a>
-            <a href="/">about</a>
-            <a href="/">home</a>
-            <a href="/">home</a>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+            <a href="/login">Login</a>
         </div>
 
         <div class="box">
-            <h3>extra links</h3>
-            <a href="/">coba</a>
-            <a href="/">tes</a>
-            <a href="/">linkedin</a>
+            <h3>Contact Us</h3>
+            <a href="mailto:R243Y0478@dicoding.org">Noviana</a>
+            <a href="mailto:R378Y0942@dicoding.org">Arin Novia</a>
+            <a href="mailto:R247X0507@dicoding.org">Agi Sahriza</a>
+            <a href="mailto:R182X0312@dicoding.org">Alfin Wahyu</a>
         </div>
 
         <div class="box">
-            <h3>kontak</h3>
-            <a href="/">123</a>
-            <a href="/">213</a>
-            <a href="/">222</a>
-            <a href="/">12221</a>
+            <h3>Other</h3>
+            <a href="https://www.dicoding.com/" target="_blank" rel="noreferrer">Dicoding</a>
+            <a href="https://kampusmerdeka.kemdikbud.go.id/" target="_blank" rel="noreferrer">Kampus Merdeka</a>
         </div>
 
     </div>

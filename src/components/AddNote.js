@@ -1,81 +1,45 @@
-import React from "react";
-import { useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
 
-function AddNotePageWrapper() {
-    const navigate = useNavigate();
-  
-    function navigateHome() {
-      navigate('/');
-    }
-  
-    return (
-      <AddNotePage navigate={navigateHome} />
-    );
-  }
-  
-  class AddNotePage extends React.Component {
-    constructor(props) {
-      super(props);
-  
-      this.state = {
-        title: '',
-        body: '',
-      };
-  
-      this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
-      this.onBodyChangeHandler = this.onBodyChangeHandler.bind(this);
-      this.onSubmitHandler = this.onSubmitHandler.bind(this);
-    }
-  
-    onTitleChangeHandler(event) {
-      this.setState({ title: event.target.value });
-    }
-  
-    onBodyChangeHandler(event) {
-      this.setState({ body: event.target.value });
-    }
-  
-    async onSubmitHandler(event) {
-      event.preventDefault();
-      const { title, body } = this.state;
-      const note = {
-        title,
-        body,
-      };
-  
-      await addNote(note);
-  
-      const { navigate } = this.props;
-      navigate();
-    }
-  
-    render() {
-      const { title } = this.state;
-  
-      return (
-        <LocaleContext.Consumer>
-          {({ locale }) => (
-            <form className="add-new-page__input" onSubmit={this.onSubmitHandler}>
-              <input type="text" className="add-new-page__input__title" value={title} onChange={this.onTitleChangeHandler} placeholder={locale === 'id' ? 'Judul catatam ...' : 'Note title ...'} />
-              <textarea
-                className="add-new-page__input__body"
-                placeholder={locale === 'id' ? 'Detail catatan ...' : 'Note detail ...'}
-                onChange={this.onBodyChangeHandler}
-              />
-              <div className="add-new-page__action">
-                <Button type="submit" title={locale === 'id' ? 'Simpan' : 'Save'}><FiCheck /></Button>
-              </div>
-            </form>
-          )}
-        </LocaleContext.Consumer>
-      );
-    }
-  }
-  
-  AddNotePage.propTypes = {
-    navigate: PropTypes.func.isRequired,
-  };
-  
-  export default AddNotePageWrapper;
-  
+const AddNote = () => {
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  })
+
+  return (
+    <>
+      <section className="addnote-page" ref={componentRef}>
+        <div class="container-addnote">
+          <div className="title-addnote" >
+            <input type="text" name="titlenote" id="titlenote" className="input-field" placeholder="Title" />
+            <label for="titlenote" className="input-label">Title</label>
+          </div>
+          <div className="note-columns" id="note-columns">
+            <textarea id="note-columns-note" name="columns-note" className="input-notee" rows="15" cols="50" />
+            <label for="columns-note" className="input-label-note">Notes </label>
+          </div>
+          <div className="cue-columns">
+            <textarea id="cue-columns-note" name="cue-columns-note" className="input-cue" rows="15" cols="50" />
+            <label for="cue-columns-note" className="input-label-cue">Cue</label>
+          </div>
+          <div className="summary">
+            <div className="summary-note">
+              <textarea type="text" name="summarynote" className="input-summary" placeholder="Summary" rows="8" />
+              <label for="summarynote" className="input-label-summary">Summary</label>
+            </div>
+          </div>
+          <div className="button-sec">
+            <div>
+              <button className="note-button"> Save Note </button>
+              <button className="note-button" onClick={handlePrint}> Export to PDF </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  )
+}
+
+
+export default AddNote;

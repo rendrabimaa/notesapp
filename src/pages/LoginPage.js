@@ -2,6 +2,7 @@ import React from "react";
 import Navigation from "../components/Navigation";
 import LoginForm from "../components/LoginForm";
 import { login, signUp } from "../utils/api";
+import LandingPageFooter from "../components/Footer";
 
 function LoginPage({ loginSuccess }) {
   async function onLoginHandler(user) {
@@ -32,6 +33,7 @@ function LoginPage({ loginSuccess }) {
       <section>
           <LoginForm login={onLoginHandler} signUp={onSignUpHandler} />
       </section>
+      <LandingPageFooter/>
     </>
   )
 }
