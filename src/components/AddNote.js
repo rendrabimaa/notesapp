@@ -1,6 +1,25 @@
 import React, { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 
+var clicked = false;
+function blurText(){
+  if (!clicked){
+    clicked = true;
+    document.getElementById("blurbtn").innerHTML = "Not Blur Text"
+    document.getElementById("note-columns-note").style.filter="blur(5px)";
+    document.getElementById("note-summary").style.filter="blur(5px)";
+    
+  }
+  else{
+    clicked = false;
+    document.getElementById("blurbtn").innerHTML = "Blur Text"
+    document.getElementById("note-columns-note").style.filter="none";
+    document.getElementById("note-summary").style.filter="none";
+  }
+  
+
+}
+
 const AddNote = () => {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -25,14 +44,15 @@ const AddNote = () => {
           </div>
           <div className="summary">
             <div className="summary-note">
-              <textarea type="text" name="summarynote" className="input-summary" placeholder="Summary" rows="8" />
+              <textarea id="note-summary" type="text" name="summarynote" className="input-summary" placeholder="Summary" rows="8" />
               <label for="summarynote" className="input-label-summary">Summary</label>
             </div>
           </div>
           <div className="button-sec">
             <div>
+              <button className="note-button" id="blurbtn" onClick={blurText}>Blur Text</button>
               <button className="note-button"> Save Note </button>
-              <button className="note-button" onClick={handlePrint}> Export to PDF </button>
+              <button className="note-button" onClick={handlePrint}> Export to PDF </button>    
             </div>
           </div>
         </div>
