@@ -19,7 +19,7 @@ function NavigationLogin({ user, setUser }) {
             <Link to='/'>Notes</Link>
           </li>
           <li>
-            <Link to='/category'>Category</Link>
+            <Link to='/categories'>Categories</Link>
           </li>
           <li>
             <button onClick={logoutHandler}>{user.fullname}Logout</button>

@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import { getUserLogged, putAccessToken } from "../utils/api";
 import NotesPage from "../pages/NotesPage";
 import AddNotePage from "../pages/AddNotePage";
+import CategoriesPage from "../pages/CategoriesPage";
 
 function NoteApp() {
   const [authedUser, setAuthedUser] = React.useState(null);
@@ -46,6 +47,7 @@ function NoteApp() {
     <Routes>
       <Route path="/*" element={<NotesPage user={authedUser} setUser={setAuthedUser} />} />
       <Route path="/notes/add" element={<AddNotePage user={authedUser} setUser={setAuthedUser} />} />
+      <Route path="/categories" element={<CategoriesPage user={authedUser} setUser={setAuthedUser} />} />
     </Routes>
   );
 }
