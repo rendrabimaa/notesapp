@@ -1,17 +1,29 @@
 import React from "react";
 import Navigation from "../components/Navigation";
 import LoginForm from "../components/LoginForm";
+import { login, signUp } from "../utils/api";
 
-function LoginPage() {
-  function onLoginHandler(user) {
-    console.log(`Email: ${user.email}`);
-    console.log(`Passowrd: ${user.password}`);
+function LoginPage({ loginSuccess }) {
+  async function onLoginHandler(user) {
+    const { error, data } = await login(user);
+    if (!error) {
+      console.log(data);
+      const input = document.querySelectorAll('.login-form input');
+      input[0].value = '';
+      input[1].value = '';
+      loginSuccess(data);
+    }
   }
 
-  function onSignUpHandler(user) {
-    console.log(`Name: ${user.name}`);
-    console.log(`Email: ${user.email}`);
-    console.log(`Passowrd: ${user.password}`);
+  async function onSignUpHandler(user) {
+    const { error } = await signUp(user);
+    if (!error) {
+      document.getElementById('flip').checked = false;
+      const input = document.querySelectorAll('.signup-form input');
+      input[0].value = '';
+      input[1].value = '';
+      input[2].value = '';
+    }
   }
 
   return (

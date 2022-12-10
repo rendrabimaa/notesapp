@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import SignUpForm from "./SignUpForm";
 
 function LoginForm({ login, signUp }) {
-  const [email, handleEmailChange] = useInput("");
+  const [username, handleUsernameChange] = useInput("");
   const [password, handlePasswordChange] = useInput("");
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
     login({
-      email,
+      username,
       password,
     });
   };
@@ -44,7 +44,7 @@ function LoginForm({ login, signUp }) {
                 <div className="input-boxes">
                   <div className="input-box">
                     <i className="fas fa-envelope"></i>
-                    <input type="email" placeholder="Enter your email" value={email} onChange={handleEmailChange} required />
+                    <input type="text" placeholder="Enter your username" value={username} onChange={handleUsernameChange} required />
                   </div>
                   <div className="input-box">
                     <i className="fas fa-lock"></i>

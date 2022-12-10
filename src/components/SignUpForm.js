@@ -3,19 +3,21 @@ import useInput from "../hooks/useInput";
 import PropTypes from "prop-types";
 
 function SignUpForm({ signUp }) {
-  const [name, handleNameChange] = useInput("");
-  const [email, handleEmailChange] = useInput("");
+  const [fullname, handleFullnameChange] = useInput("");
+  const [username, handleUsernameChange] = useInput("");
   const [password, handlePasswordChange] = useInput("");
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
     signUp({
-      name,
-      email,
+      fullname,
+      username,
       password,
     });
   };
+
+  console.log(fullname);
 
   return (
       <div className="signup-form">
@@ -24,11 +26,11 @@ function SignUpForm({ signUp }) {
             <div className="input-boxes">
               <div className="input-box">
                 <i className="fas fa-user"></i>
-                <input type="text" placeholder="Enter your name" value={name} onChange={handleNameChange} required/>
+                <input type="text" placeholder="Enter your name" value={fullname} onChange={handleFullnameChange} required/>
               </div>
               <div className="input-box">
                 <i className="fas fa-envelope"></i>
-                <input type="text" placeholder="Enter your email" value={email} onChange={handleEmailChange}  required/>
+                <input type="text" placeholder="Enter your username" value={username} onChange={handleUsernameChange}  required/>
               </div>
               <div className="input-box">
                 <i className="fas fa-lock"></i>

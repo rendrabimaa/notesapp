@@ -74,6 +74,105 @@ nav {
   color: black;
 }
 
+/* Navbar Login */
+.nav-login {
+  background-color: #f5f5f5;
+  width: 100%;
+  box-shadow: 0 0.5px 10px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-login__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px 0;
+  max-width: 92%;
+}
+
+.nav-login__inner ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-login__inner ul li {
+  list-style: none;
+  margin-left: 15px;
+}
+
+/* Notes Page */
+.notes-page-container {
+  margin: 0 auto;
+  margin-top: 100px;
+  width: 95%;
+  max-width: 1000px;
+}
+
+.search-container .search {
+  width: 100%;
+  padding: 15px 10px;
+  border: 1px solid #ccc;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 1.1rem;
+}
+
+.select-add-container {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.select-container {
+  width: 70%;
+}
+
+.select-container p {
+  margin-bottom: 5px;
+}
+
+.add-container button {
+  background-color: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.react-select-container {
+  max-width: 300px;
+}
+
+.notes-container {
+  margin-top: 15px;
+}
+
+.note-container {
+  width: 100%;
+  background-color: #F5F5F5;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note-container .time {
+  margin-top: 4px;
+  margin-bottom: 8px;
+}
+
+.note-container i {
+  font-size: 26px;
+  cursor: pointer;
+  margin: 0 3px;
+}
+
 /* LANDING PAGE */
 
 .home {
