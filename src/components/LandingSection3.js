@@ -1,4 +1,6 @@
 import React from "react";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 
 function LandingPageSection3() {
@@ -22,7 +24,11 @@ function LandingPageSection3() {
             </div>
             <div class="icons">
                 <div class="info_img">
-                    <img src="icon-cartoon.png" alt="" />
+                        <LazyLoadImage
+                            alt="section-img2"
+                            src="icon-cartoon.png"
+                            effect="opacity"
+                        />
                 </div>
             </div>
 

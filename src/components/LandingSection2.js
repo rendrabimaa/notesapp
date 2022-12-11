@@ -1,4 +1,6 @@
 import React from "react";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 function LandingPageSection2({ image, title, subtitle, subtitle2}) {
     return (
@@ -15,7 +17,11 @@ function LandingPageSection2({ image, title, subtitle, subtitle2}) {
                         </p>              
                     </div>
                     <div className="img-container">
-                        <img src={image} alt="section-image2"></img>
+                        <LazyLoadImage
+                            alt="section-img2"
+                            src={image}
+                            effect="opacity"
+                        />
                     </div>
                 </div>
             </section>   

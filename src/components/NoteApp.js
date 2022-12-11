@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useMemo } from "react";
-import LandingPage from "../pages/LandingPage";
-import About from "../pages/About";
-import LoginPage from "../pages/LoginPage";
+import React, { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import ThemeContext from '../context/ThemeContext';
 import { getUserLogged, putAccessToken } from "../utils/api";
-import NotesPage from "../pages/NotesPage";
-import AddNotePage from "../pages/AddNotePage";
-import CategoriesPage from "../pages/CategoriesPage";
+const LandingPage = lazy(() => import("../pages/LandingPage"));
+const About = lazy(() => import("../pages/About"));
+const LoginPage = lazy(() => import("../pages/LoginPage"));
+const ThemeContext = lazy(() => import("../context/ThemeContext"));
+const NotesPage = lazy(() => import("../pages/NotesPage"));
+const AddNotePage = lazy(() => import("../pages/AddNotePage"));
+const CategoriesPage = lazy(() => import("../pages/CategoriesPage"));
 
 function NoteApp() {
   const [authedUser, setAuthedUser] = React.useState(null);
@@ -65,11 +65,13 @@ function NoteApp() {
   return (
     <ThemeContext.Provider value={themeContextValue}>
       <div className="app" data-theme={theme}>
-        <Routes>
-          <Route path="/*" element={<NotesPage user={authedUser} setUser={setAuthedUser} />} />
-          <Route path="/notes/add" element={<AddNotePage user={authedUser} setUser={setAuthedUser} />} />
-          <Route path="/categories" element={<CategoriesPage user={authedUser} setUser={setAuthedUser} />} />
-        </Routes>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Routes>
+            <Route path="/*" element={<NotesPage user={authedUser} setUser={setAuthedUser} />} />
+            <Route path="/notes/add" element={<AddNotePage user={authedUser} setUser={setAuthedUser} />} />
+            <Route path="/categories" element={<CategoriesPage user={authedUser} setUser={setAuthedUser} />} />
+          </Routes>
+        </Suspense>
       </div>
     </ThemeContext.Provider>
   );

@@ -1,11 +1,17 @@
 import React from "react";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 function LandingPageSection({ image, title, subtitle, subtitle2}) {
     return (
             <section className="landing__section" id="about">
                 <div className="row">
                     <div className="img-container">
-                        <img src={image} alt="section-img"></img>
+                        <LazyLoadImage
+                            alt="section-img"
+                            src={image}
+                            effect="opacity"
+                        />
                     </div>
                     <div className="content">
                         <h3> {title} </h3>

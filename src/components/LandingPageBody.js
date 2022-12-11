@@ -1,4 +1,6 @@
 import React from "react";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 function LandingPageBody() {
     return (
@@ -21,7 +23,11 @@ function LandingPageBody() {
                 <h2 className="heading-2"> Now available on website</h2>
                 <div className="row">
                     <div className="img-container">
-                        <img src="CornellNotes.webp" alt="hh"></img>
+                        <LazyLoadImage
+                            alt="section-img"
+                            src="CornellNotes.webp"
+                            effect="opacity"
+                        />
 
                     </div>
 

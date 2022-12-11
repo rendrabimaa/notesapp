@@ -2,6 +2,8 @@ import React from "react";
 import useInput from "../hooks/useInput";
 import PropTypes from "prop-types";
 import SignUpForm from "./SignUpForm";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 function LoginForm({ login, signUp }) {
   const [username, handleUsernameChange] = useInput("");
@@ -29,7 +31,11 @@ function LoginForm({ login, signUp }) {
             </div>
           </div>
           <div className="back">
-            <img className="backImg" src="Gambar 1.jpg" alt="" />
+            <LazyLoadImage
+                src="Gambar 1.jpg"
+                effect="opacity"
+                className="backImg"
+            />
             <div className="text">
               <span className="text-1">Note IT! <br />Take the best notes</span>
               <span className="text-2">Let's get started</span>
