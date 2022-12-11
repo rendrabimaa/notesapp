@@ -2,14 +2,17 @@
   --primary: #BB86FC;
   --primary-variant: #3700B3;
   --secondary: #03DAC6;
-  --background: #4D4646;
-  --background-card: #7E7474;
+  --background: #7E7474;
+  --background-card: #c7c7c7;
   --surface: #121212;
   --error: #CF6679;
   --warning: #F39C12;
   --on-background: #FFFFFF;
   --on-background-grey: #c7c7c7;
   --on-surface: #FFFFFF;
+  --text: white;
+  --button: #7E7474;
+  
 }
 
 [data-theme="light"] {
@@ -18,6 +21,14 @@
   --on-background: #333333;
   --on-background-grey: #6d6d6d;
   --on-surface: #333333;
+  --background-card:  #F5F5F5;
+  --text: black;
+  --button: #c7c7c7;
+
+}
+
+.blurbttn{
+  float: right;
 }
 
 * {
@@ -32,6 +43,7 @@
 
 body{
   background: var(--background);
+  
 }
 
 
@@ -107,6 +119,41 @@ nav {
 }
 
 /* Navbar Login */
+.nav-login-list li .login-text{
+  color: black;
+  font-size: 1.2rem;
+  padding-left: 2rem;
+}
+
+.nav-login-list li .login-text:hover {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #694E4E;
+}
+
+.nav-login-list .theme{
+  padding-top: 5px;
+  padding-right: 1rem;
+  
+}
+
+.nav-login-list li button{
+  color: black;
+  background-color: transparent;
+  font-size: 1.2rem;
+  padding-left: 2rem;
+}
+
+.nav-login-list li button:hover {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #694E4E;
+}
+
+
+
 .nav-login {
   background-color: #f5f5f5;
   width: 100%;
@@ -129,11 +176,19 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 .nav-login__inner ul li {
   list-style: none;
   margin-left: 15px;
+
+}
+
+.logoutbutton{ 
+ vertical-align: text-top;
+ padding-top: 1px;
+ 
 }
 
 /* Notes Page */
@@ -386,8 +441,6 @@ section {
   align-items: center;
   gap: 2rem;
   flex-wrap: wrap;
-  /* padding: 2rem 0;
-  padding-bottom: 3rem; */
 }
 
 .landing__section_2 .row .img-container {
@@ -399,8 +452,6 @@ section {
 
 .landing__section_2 .row .img-container img {
   width: 75%;
-  /* border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.3); */
   height: 75%;
   object-fit: cover;
 }
@@ -459,6 +510,7 @@ section {
 /* FOOTER */
 .footer {
   padding-bottom: 1rem;
+  
   background-color: #f5f5f5;
 }
 
@@ -790,7 +842,17 @@ section {
 /* ADD NOTE PAGE */
 
 .addnote-page{
+  margin-top: 50px;
   background-color: #F3F3F3;
+}
+
+.select-add {
+  margin-bottom: 10px;
+}
+
+.select-add h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
 }
 
 .container-addnote {
@@ -811,37 +873,37 @@ section {
 }
 
 .title-addnote {
-  background: white;
+  background: var(--background);
   grid-area: title;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   padding-top: 50px;
   min-height: 100px;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid var(--text);
 }
 
 .cue-columns {
-  background: white;
+  background: var(--background);
   grid-area: cue;
   padding-top: 60px;
   min-height: 350px;
-  border-right: 3px solid black;
+  border-right: 3px solid var(--text);
 }
 
 .note-columns{
-  background: white;
+  background: var(--background);
   grid-area: note;
   padding-top: 60px;
   min-height: 350px;
 }
 
 .summary {
-  background: white;
+  background: var(--background);
   grid-area: summary;
   padding-top: 60px;
   min-height: 300px;
-  border-bottom: 3px solid black;
-  border-top: 3px solid black;
+  border-bottom: 3px solid var(--text);
+  border-top: 3px solid var(--text);
 }
 
 .note-button{
@@ -856,11 +918,11 @@ section {
   width: 100%;
   outline: 0;
   border: 0;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--text);
   padding: 10px 0;
   background: transparent;
   font-size: 2em;
-  color: black;
+  color: var(--text);
   transition: 0.3s ease;
   padding-left: 20px;
 }
@@ -871,7 +933,7 @@ section {
   border: 0;
   background: transparent;
   font-size: 2em;
-  color: black;
+  color: var(--text);
   transition: 0.3s ease;
   padding-left: 20px;
   padding-right: 20px;
@@ -883,7 +945,7 @@ section {
   border: 0;
   background: transparent;
   font-size: 2em;
-  color: black;
+  color: var(--text);
   transition: 0.3s ease;
   padding-left: 20px;
   padding-right: 20px;
@@ -897,7 +959,7 @@ section {
   border: 0;
   background: transparent;
   font-size: 2em;
-  color: black;
+  color: var(--text);
   transition: 0.3s ease;
   padding-left: 20px;
   padding-right: 20px;
@@ -906,9 +968,9 @@ section {
 .input-label{
   display: block;
   position: absolute;
-  top: 60px;
+  top: 185px;
   font-size: 2em;
-  color: black;
+  color: var(--text);
   text-transform: uppercase;
   transition: 0.3s ease;
   margin-left: 20px;
@@ -917,9 +979,9 @@ section {
 .input-label-summary{
   display: block;
   position: absolute;
-  top:640px;
+  top:780px;
   font-size: 2em;
-  color:black;
+  color:var(--text);
   text-transform: uppercase;
   transition: 0.3s ease;
   margin-left: 20px;
@@ -928,9 +990,9 @@ section {
 .input-label-cue{
   display: block;
   position: absolute;
-  top:150px;
+  top:290px;
   font-size: 2em;
-  color:black;
+  color:var(--text);
   text-transform: uppercase;
   transition: 0.3s ease;
   margin-left: 20px;
@@ -940,9 +1002,9 @@ section {
 .input-label-note{
   display: block;
   position: absolute;
-  top:150px;
+  top:290px;
   font-size: 2em;
-  color:black;
+  color:var(--text);
   text-transform: uppercase;
   transition: 0.3s ease;
   margin-left: 20px;
@@ -963,7 +1025,7 @@ section {
 .input-field:focus ~ .input-label{
   display: block;
   position: absolute;
-  top: 40px;
+  top: 185px;
   font-size: 2em;
   color: black;
 }
@@ -981,9 +1043,9 @@ textarea{
 }
 
 .note-button {
-  background-color: black; 
+  background-color: var(--button); 
   border: none;
-  color: white;
+  color: var(--text);
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -996,11 +1058,13 @@ textarea{
   border-radius: 2px;
 }
 
+
+
 /* CATEGORY */
 .category{
   background-color: var(--background-card);
   border-radius: 5%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
   margin-top: 10px;
   padding: 1rem;
@@ -1012,8 +1076,11 @@ textarea{
   white-space: pre-wrap;
 }
 
-.category a{
+.category button{
   color: black;
+  background-color: unset;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .category-footer{
@@ -1026,6 +1093,7 @@ textarea{
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
 }
 
 .category.new{
@@ -1052,6 +1120,7 @@ textarea{
 
 .delete-icons{
   cursor: pointer;
+  color: black;
 }
 
 .save:hover{
@@ -1076,6 +1145,13 @@ textarea{
 .search input:focus{
   outline: none;
 }
+
+.cat-text{
+  font-size: 1.2rem;
+  padding-bottom: 2px;
+}
+
+
 
 @media (max-width: 730px) {
   .container .cover {
@@ -1167,11 +1243,11 @@ textarea{
     min-height: 500px;
   }
   .input-label-summary{
-    top:1145px;
+    top:1280px;
   }
 
   .input-label-note{
-    top:650px;
+    top:780px;
   }
 
   .addnote-page{

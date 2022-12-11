@@ -8,7 +8,7 @@ const Search = ({ handleSearchCategory }) => {
       <input
         onChange={(event) => handleSearchCategory(event.target.value)}
         type='text' 
-        placeholder="type to search..." />
+        placeholder=" Type to search..." />
     </div>
   )
 }

@@ -1,15 +1,14 @@
 import React from "react";
-import AddNote from "../components/AddNote";
+import DetailNote from "../components/DetailNote";
 import NavigationLogin from "../components/NavigationLogin";
 
-
-function AddNotePage({ user, setUser }){
+function DetailNotePage({ user, setUser }){
   return(
     <>
       <NavigationLogin user={user} setUser={setUser} />
-      <AddNote/>
+      <DetailNote/>
     </>
   )
 }
 
-export default AddNotePage;
+export default DetailNotePage;

@@ -28,7 +28,6 @@ async function login({ username, password }) {
   });
 
   const responseJson = await response.json();
-  console.log(responseJson);
 
   if (responseJson.status !== "success") {
     alert(responseJson.message);
@@ -65,7 +64,62 @@ async function getUserLogged() {
   const response = await fetchWithToken(`${BASE_URL}/users/me`);
   const responseJson = await response.json();
 
-  console.log(responseJson.data)
+  if (responseJson.status !== "success") {
+    return { error: true, data: null };
+  }
+
+  return { error: false, data: responseJson.data };
+}
+
+async function getCategories() {
+  const response = await fetchWithToken(`${BASE_URL}/categories`);
+  const responseJson = await response.json();
+
+  return { data: responseJson.data.categories };
+}
+
+async function postCategories({ name }) {
+  const response = await fetchWithToken(`${BASE_URL}/categories`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name }),
+  });
+
+  const responseJson = await response.json();
+
+  if (responseJson.status !== "success") {
+    return { error: true, message: responseJson.message };
+  }
+
+  return { error: false, message: responseJson.message };
+}
+
+async function editCategories({ name }, id) {
+  const response = await fetchWithToken(`${BASE_URL}/categories/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name }),
+  });
+
+  const responseJson = await response.json();
+
+  if (responseJson.status !== "success") {
+    return { error: true, message: responseJson.message };
+  }
+
+  return { error: false, message: responseJson.message };
+}
+
+async function deleteCategories(id) {
+  const response = await fetchWithToken(`${BASE_URL}/categories/${id}`, {
+    method: "DELETE",
+  });
+
+  const responseJson = await response.json();
 
   if (responseJson.status !== "success") {
     return { error: true, data: null };
@@ -74,4 +128,61 @@ async function getUserLogged() {
   return { error: false, data: responseJson.data };
 }
 
-export { getAccessToken, putAccessToken, login, signUp, getUserLogged };
+async function getNotes() {
+  const response = await fetchWithToken(`${BASE_URL}/notes`);
+  const responseJson = await response.json();
+
+  return { data: responseJson.data.notes };
+}
+
+async function postNotes({ title, main, cue, summary, categoryId }) {
+  const response = await fetchWithToken(`${BASE_URL}/notes`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title, cue, main, summary, categoryId }),
+  });
+
+  const responseJson = await response.json();
+
+  if (responseJson.status !== "success") {
+    return { error: true, message: responseJson.message };
+  }
+
+  return { error: false, message: responseJson.message };
+}
+
+async function editNotes({ title, main, cue, summary, categoryId }, id) {
+  const response = await fetchWithToken(`${BASE_URL}/notes/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ title, main, cue, summary, categoryId }),
+  });
+
+  const responseJson = await response.json();
+
+  if (responseJson.status !== "success") {
+    return { error: true, message: responseJson.message };
+  }
+
+  return { error: false, message: responseJson.message };
+}
+
+async function deleteNote(id) {
+  const response = await fetchWithToken(`${BASE_URL}/notes/${id}`, {
+    method: "DELETE",
+  });
+
+  const responseJson = await response.json();
+
+  if (responseJson.status !== "success") {
+    return { error: true, data: null };
+  }
+
+  return { error: false, data: responseJson.data };
+}
+
+export { getAccessToken, putAccessToken, login, signUp, getUserLogged, getCategories, postCategories, editCategories, deleteCategories, getNotes, postNotes, editNotes, deleteNote };

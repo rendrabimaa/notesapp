@@ -4,10 +4,11 @@ import { getUserLogged, putAccessToken } from "../utils/api";
 const LandingPage = lazy(() => import("../pages/LandingPage"));
 const About = lazy(() => import("../pages/About"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
-const ThemeContext = lazy(() => import("../context/ThemeContext"));
+const ThemeContext = lazy(() => import("../pages/ThemeContext"));
 const NotesPage = lazy(() => import("../pages/NotesPage"));
 const AddNotePage = lazy(() => import("../pages/AddNotePage"));
 const CategoriesPage = lazy(() => import("../pages/CategoriesPage"));
+const DetailNotePage = lazy(() => import("../pages/DetailNotePage"));
 
 function NoteApp() {
   const [authedUser, setAuthedUser] = React.useState(null);
@@ -54,11 +55,13 @@ function NoteApp() {
 
   if (authedUser === null) {
     return (
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/login" element={<LoginPage loginSuccess={onLoginSuccess} />} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/login" element={<LoginPage loginSuccess={onLoginSuccess} />} />
+        </Routes>
+      </Suspense>
     );
   }
   
@@ -69,6 +72,7 @@ function NoteApp() {
           <Routes>
             <Route path="/*" element={<NotesPage user={authedUser} setUser={setAuthedUser} />} />
             <Route path="/notes/add" element={<AddNotePage user={authedUser} setUser={setAuthedUser} />} />
+            <Route path="/note/:id" element={<DetailNotePage user={authedUser} setUser={setAuthedUser} />} />
             <Route path="/categories" element={<CategoriesPage user={authedUser} setUser={setAuthedUser} />} />
           </Routes>
         </Suspense>
