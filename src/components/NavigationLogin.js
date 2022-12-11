@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { putAccessToken } from "../utils/api";
+import ThemeButton from './buttons/ThemeButton';
+import { AiOutlineLogout } from 'react-icons/ai';
 
 function NavigationLogin({ user, setUser }) {
   function logoutHandler() {
@@ -13,16 +15,17 @@ function NavigationLogin({ user, setUser }) {
   return (
     <div className="nav-login">
       <div className="nav-login__inner">
-        <Link to="/"> NOTE IT! </Link>
-        <ul>
+      <Link to="/" ><img src="Logo.png" alt="Logo" className="logoNav"></img></Link>
+        <ul className="nav-login-list">
+          <li className="theme"><ThemeButton /></li>
           <li>
-            <Link to='/'>Notes</Link>
+            <Link to='/'  className="login-text">Notes</Link>
           </li>
           <li>
-            <Link to='/categories'>Categories</Link>
+            <Link to='/categories'  className="login-text">Categories</Link>
           </li>
           <li>
-            <button onClick={logoutHandler}>{user.fullname}Logout</button>
+            <button onClick={logoutHandler}>{user.fullname} <AiOutlineLogout className="logoutbutton"/></button>
           </li>
         </ul>
       </div>

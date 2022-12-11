@@ -14,7 +14,7 @@ function About() {
           <p>If you have any questions or suggestions, please do not hesitate to contact us at noteitapp@gmail.com</p>
         </div>
         <AboutBio />
-       
+    
       </section>
       <LandingPageFooter/>
     </>

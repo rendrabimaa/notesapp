@@ -10,7 +10,7 @@ let clicked = false;
 function blurText(){
   if (!clicked){
     clicked = true;
-    document.getElementById("blurbtn").innerHTML = "Not Blur Text"
+    document.getElementById("blurbtn").innerHTML = "Unblur Text"
     document.getElementById("note-columns-note").style.filter="blur(5px)";
     document.getElementById("note-summary").style.filter="blur(5px)";   
   }
