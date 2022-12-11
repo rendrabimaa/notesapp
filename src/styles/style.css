@@ -1,3 +1,25 @@
+:root {
+  --primary: #BB86FC;
+  --primary-variant: #3700B3;
+  --secondary: #03DAC6;
+  --background: #4D4646;
+  --background-card: #7E7474;
+  --surface: #121212;
+  --error: #CF6679;
+  --warning: #F39C12;
+  --on-background: #FFFFFF;
+  --on-background-grey: #c7c7c7;
+  --on-surface: #FFFFFF;
+}
+
+[data-theme="light"] {
+  --background: #fff;
+  --suface: #FFFFFF;
+  --on-background: #333333;
+  --on-background-grey: #6d6d6d;
+  --on-surface: #333333;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -6,6 +28,10 @@
   text-decoration: none;
   outline: none;
   border: none;
+}
+
+body{
+  background: var(--background);
 }
 
 
@@ -972,7 +998,7 @@ textarea{
 
 /* CATEGORY */
 .category{
-  background-color: #D1D1D1;
+  background-color: var(--background-card);
   border-radius: 5%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-bottom: 10px;
@@ -1003,14 +1029,14 @@ textarea{
 }
 
 .category.new{
-  background-color: #F7F7F7;
+  background-color: var(--background-card);
 
 }
 
 .category textarea{
   border: none;
   resize: none;
-  background-color: #F7F7F7;
+  background-color: var(--background-card);
 }
 
 .category textarea:focus{

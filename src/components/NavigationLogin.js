@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { putAccessToken } from "../utils/api";
+import ThemeButton from './buttons/ThemeButton';
 
 function NavigationLogin({ user, setUser }) {
   function logoutHandler() {
@@ -15,6 +16,7 @@ function NavigationLogin({ user, setUser }) {
       <div className="nav-login__inner">
         <Link to="/"> NOTE IT! </Link>
         <ul>
+          <li><ThemeButton /></li>
           <li>
             <Link to='/'>Notes</Link>
           </li>
