@@ -6,22 +6,6 @@ import Select from 'react-select'
 import { getCategories } from "../utils/api";
 import { useNavigate } from "react-router-dom";
 
-let clicked = false;
-function blurText(){
-  if (!clicked){
-    clicked = true;
-    document.getElementById("blurbtn").innerHTML = "Unblur Text"
-    document.getElementById("note-columns-note").style.filter="blur(5px)";
-    document.getElementById("note-summary").style.filter="blur(5px)";   
-  }
-  else{
-    clicked = false;
-    document.getElementById("blurbtn").innerHTML = "Blur Text"
-    document.getElementById("note-columns-note").style.filter="none";
-    document.getElementById("note-summary").style.filter="none";
-  }
-}
-
 const AddNote = () => {
   const navigate = useNavigate();
 
@@ -136,7 +120,6 @@ const AddNote = () => {
           </div>
           <div className="button-sec">
             <div>
-            <button className="note-button" id="blurbtn" onClick={blurText}>Blur Text</button>
               <button className="note-button" onClick={onSaveNoteHandler}> Save Note </button>
               <button className="note-button" onClick={handlePrint}> Export to PDF </button>    
             </div>
