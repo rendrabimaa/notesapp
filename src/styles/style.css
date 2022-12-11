@@ -2,14 +2,15 @@
   --primary: #BB86FC;
   --primary-variant: #3700B3;
   --secondary: #03DAC6;
-  --background: #4D4646;
-  --background-card: #7E7474;
+  --background: #7E7474;
+  --background-card: #c7c7c7;
   --surface: #121212;
   --error: #CF6679;
   --warning: #F39C12;
   --on-background: #FFFFFF;
   --on-background-grey: #c7c7c7;
   --on-surface: #FFFFFF;
+  
 }
 
 [data-theme="light"] {
@@ -18,6 +19,8 @@
   --on-background: #333333;
   --on-background-grey: #6d6d6d;
   --on-surface: #333333;
+  --background-card:  #F5F5F5;
+
 }
 
 * {
@@ -32,6 +35,7 @@
 
 body{
   background: var(--background);
+  
 }
 
 
@@ -107,6 +111,22 @@ nav {
 }
 
 /* Navbar Login */
+.nav-login-list li .login-text{
+  color: black;
+  font-size: 1.2rem;
+}
+
+.nav-login-list .theme{
+  padding-top: 5px;
+}
+
+.nav-login-list li button{
+  color: black;
+  background-color: transparent;
+  font-size: 1.2rem;
+}
+
+
 .nav-login {
   background-color: #f5f5f5;
   width: 100%;
@@ -129,11 +149,17 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 .nav-login__inner ul li {
   list-style: none;
   margin-left: 15px;
+
+}
+
+.logoutbutton{ 
+  padding-top: 5px;
 }
 
 /* Notes Page */
@@ -386,8 +412,6 @@ section {
   align-items: center;
   gap: 2rem;
   flex-wrap: wrap;
-  /* padding: 2rem 0;
-  padding-bottom: 3rem; */
 }
 
 .landing__section_2 .row .img-container {
@@ -399,8 +423,6 @@ section {
 
 .landing__section_2 .row .img-container img {
   width: 75%;
-  /* border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.3); */
   height: 75%;
   object-fit: cover;
 }
@@ -459,6 +481,7 @@ section {
 /* FOOTER */
 .footer {
   padding-bottom: 1rem;
+  
   background-color: #f5f5f5;
 }
 
@@ -1000,7 +1023,7 @@ textarea{
 .category{
   background-color: var(--background-card);
   border-radius: 5%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
   margin-top: 10px;
   padding: 1rem;
@@ -1026,6 +1049,7 @@ textarea{
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
 }
 
 .category.new{
@@ -1052,6 +1076,7 @@ textarea{
 
 .delete-icons{
   cursor: pointer;
+  color: black;
 }
 
 .save:hover{
@@ -1076,6 +1101,7 @@ textarea{
 .search input:focus{
   outline: none;
 }
+
 
 @media (max-width: 730px) {
   .container .cover {

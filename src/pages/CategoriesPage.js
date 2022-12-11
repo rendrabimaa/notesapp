@@ -45,6 +45,7 @@ const deleteCategory = (id) => {
   return (
     <>
       <NavigationLogin user={user} setUser={setUser} />
+      <section className="cat-sec">
       <div className="notes-page-container">
         <Search handleSearchCategory={setSearchName} />
         <div className="notes-container">
@@ -57,6 +58,9 @@ const deleteCategory = (id) => {
             />
         </div>
       </div>
+
+      </section>
+      
     </>
   )
 }
