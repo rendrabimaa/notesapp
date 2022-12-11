@@ -12,7 +12,7 @@ const AddCategory = ({ handleAddCategory }) => {
 
   const handleSaveClick = () => {
     if(categoryName.trim().length >= 0) {
-      handleAddCategory(categoryName);
+      handleAddCategory(categoryName, setCategoryName);
     }
   }
 

@@ -764,7 +764,17 @@ section {
 /* ADD NOTE PAGE */
 
 .addnote-page{
+  margin-top: 50px;
   background-color: #F3F3F3;
+}
+
+.select-add {
+  margin-bottom: 10px;
+}
+
+.select-add h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
 }
 
 .container-addnote {
@@ -880,7 +890,7 @@ section {
 .input-label{
   display: block;
   position: absolute;
-  top: 60px;
+  top: 205px;
   font-size: 2em;
   color: black;
   text-transform: uppercase;
@@ -891,7 +901,7 @@ section {
 .input-label-summary{
   display: block;
   position: absolute;
-  top:640px;
+  top:785px;
   font-size: 2em;
   color:black;
   text-transform: uppercase;
@@ -902,7 +912,7 @@ section {
 .input-label-cue{
   display: block;
   position: absolute;
-  top:150px;
+  top:295px;
   font-size: 2em;
   color:black;
   text-transform: uppercase;
@@ -914,7 +924,7 @@ section {
 .input-label-note{
   display: block;
   position: absolute;
-  top:150px;
+  top:295px;
   font-size: 2em;
   color:black;
   text-transform: uppercase;
@@ -937,7 +947,7 @@ section {
 .input-field:focus ~ .input-label{
   display: block;
   position: absolute;
-  top: 40px;
+  top: 185px;
   font-size: 2em;
   color: black;
 }
@@ -986,8 +996,11 @@ textarea{
   white-space: pre-wrap;
 }
 
-.category a{
+.category button{
   color: black;
+  background-color: unset;
+  cursor: pointer;
+  font-size: 16px;
 }
 
 .category-footer{
