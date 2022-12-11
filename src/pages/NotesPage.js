@@ -59,7 +59,7 @@ function NotesPage({ user, setUser, categoryActive }) {
 
   if (notes !== null) {
     if (notes.length === 0) {
-      printElementNotes = <p>Empty</p>; 
+      printElementNotes = <p>Add or Choose a Category to add a new Note!</p>; 
     } else {
       let newNotes = notes.filter((note) => {
         return note.title.toLowerCase().includes(keyword.toLowerCase());
@@ -131,7 +131,7 @@ function NotesPage({ user, setUser, categoryActive }) {
         </div>
         <div className="select-add-container">
           <div className="select-container">
-            <p>Category</p>
+            <p className="cat-text"><b> Category</b></p>
             {printElementSelect}
           </div>
           <div className="add-container">

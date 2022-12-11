@@ -109,9 +109,12 @@ const AddNote = () => {
     <>
       <section className="addnote-page" ref={componentRef}>
         <div className="select-add">
-          <h1>CATEGORY</h1>
+          <h1>CATEGORY </h1>
           {printElementSelect}
+         
         </div>
+      
+     
         <div class="container-addnote">
           <div className="title-addnote" >
             <input type="text" name="titlenote" id="titlenote" className="input-field" placeholder="Title" value={title} onChange={handleTitleChange} />
@@ -133,7 +136,7 @@ const AddNote = () => {
           </div>
           <div className="button-sec">
             <div>
-              <button className="note-button" id="blurbtn" onClick={blurText}>Blur Text</button>
+            <button className="note-button" id="blurbtn" onClick={blurText}>Blur Text</button>
               <button className="note-button" onClick={onSaveNoteHandler}> Save Note </button>
               <button className="note-button" onClick={handlePrint}> Export to PDF </button>    
             </div>

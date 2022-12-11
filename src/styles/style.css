@@ -10,6 +10,8 @@
   --on-background: #FFFFFF;
   --on-background-grey: #c7c7c7;
   --on-surface: #FFFFFF;
+  --text: white;
+  --button: #7E7474;
   
 }
 
@@ -20,7 +22,13 @@
   --on-background-grey: #6d6d6d;
   --on-surface: #333333;
   --background-card:  #F5F5F5;
+  --text: black;
+  --button: #c7c7c7;
 
+}
+
+.blurbttn{
+  float: right;
 }
 
 * {
@@ -114,17 +122,36 @@ nav {
 .nav-login-list li .login-text{
   color: black;
   font-size: 1.2rem;
+  padding-left: 2rem;
+}
+
+.nav-login-list li .login-text:hover {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #694E4E;
 }
 
 .nav-login-list .theme{
   padding-top: 5px;
+  padding-right: 1rem;
+  
 }
 
 .nav-login-list li button{
   color: black;
   background-color: transparent;
   font-size: 1.2rem;
+  padding-left: 2rem;
 }
+
+.nav-login-list li button:hover {
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #694E4E;
+}
+
 
 
 .nav-login {
@@ -159,7 +186,9 @@ nav {
 }
 
 .logoutbutton{ 
-  padding-top: 5px;
+ vertical-align: text-top;
+ padding-top: 1px;
+ 
 }
 
 /* Notes Page */
@@ -844,37 +873,37 @@ section {
 }
 
 .title-addnote {
-  background: white;
+  background: var(--background);
   grid-area: title;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   padding-top: 50px;
   min-height: 100px;
-  border-bottom: 3px solid black;
+  border-bottom: 3px solid var(--text);
 }
 
 .cue-columns {
-  background: white;
+  background: var(--background);
   grid-area: cue;
   padding-top: 60px;
   min-height: 350px;
-  border-right: 3px solid black;
+  border-right: 3px solid var(--text);
 }
 
 .note-columns{
-  background: white;
+  background: var(--background);
   grid-area: note;
   padding-top: 60px;
   min-height: 350px;
 }
 
 .summary {
-  background: white;
+  background: var(--background);
   grid-area: summary;
   padding-top: 60px;
   min-height: 300px;
-  border-bottom: 3px solid black;
-  border-top: 3px solid black;
+  border-bottom: 3px solid var(--text);
+  border-top: 3px solid var(--text);
 }
 
 .note-button{
@@ -889,11 +918,11 @@ section {
   width: 100%;
   outline: 0;
   border: 0;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid var(--text);
   padding: 10px 0;
   background: transparent;
   font-size: 2em;
-  color: black;
+  color: var(--text);
   transition: 0.3s ease;
   padding-left: 20px;
 }
@@ -904,7 +933,7 @@ section {
   border: 0;
   background: transparent;
   font-size: 2em;
-  color: black;
+  color: var(--text);
   transition: 0.3s ease;
   padding-left: 20px;
   padding-right: 20px;
@@ -916,7 +945,7 @@ section {
   border: 0;
   background: transparent;
   font-size: 2em;
-  color: black;
+  color: var(--text);
   transition: 0.3s ease;
   padding-left: 20px;
   padding-right: 20px;
@@ -930,7 +959,7 @@ section {
   border: 0;
   background: transparent;
   font-size: 2em;
-  color: black;
+  color: var(--text);
   transition: 0.3s ease;
   padding-left: 20px;
   padding-right: 20px;
@@ -939,9 +968,9 @@ section {
 .input-label{
   display: block;
   position: absolute;
-  top: 205px;
+  top: 185px;
   font-size: 2em;
-  color: black;
+  color: var(--text);
   text-transform: uppercase;
   transition: 0.3s ease;
   margin-left: 20px;
@@ -950,9 +979,9 @@ section {
 .input-label-summary{
   display: block;
   position: absolute;
-  top:785px;
+  top:780px;
   font-size: 2em;
-  color:black;
+  color:var(--text);
   text-transform: uppercase;
   transition: 0.3s ease;
   margin-left: 20px;
@@ -961,9 +990,9 @@ section {
 .input-label-cue{
   display: block;
   position: absolute;
-  top:295px;
+  top:290px;
   font-size: 2em;
-  color:black;
+  color:var(--text);
   text-transform: uppercase;
   transition: 0.3s ease;
   margin-left: 20px;
@@ -973,9 +1002,9 @@ section {
 .input-label-note{
   display: block;
   position: absolute;
-  top:295px;
+  top:290px;
   font-size: 2em;
-  color:black;
+  color:var(--text);
   text-transform: uppercase;
   transition: 0.3s ease;
   margin-left: 20px;
@@ -1014,9 +1043,9 @@ textarea{
 }
 
 .note-button {
-  background-color: black; 
+  background-color: var(--button); 
   border: none;
-  color: white;
+  color: var(--text);
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -1028,6 +1057,8 @@ textarea{
   margin-left: 20px;
   border-radius: 2px;
 }
+
+
 
 /* CATEGORY */
 .category{
@@ -1114,6 +1145,12 @@ textarea{
 .search input:focus{
   outline: none;
 }
+
+.cat-text{
+  font-size: 1.2rem;
+  padding-bottom: 2px;
+}
+
 
 
 @media (max-width: 730px) {
@@ -1206,11 +1243,11 @@ textarea{
     min-height: 500px;
   }
   .input-label-summary{
-    top:1145px;
+    top:1280px;
   }
 
   .input-label-note{
-    top:650px;
+    top:780px;
   }
 
   .addnote-page{
