@@ -14,6 +14,7 @@ function NoteApp() {
   const [authedUser, setAuthedUser] = React.useState(null);
   const [initializing, setInitializing] = React.useState(true);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+  const [categoryActive, setCategoryActive] = React.useState('all');
 
   const toggleTheme = () => {
     setTheme((prevTheme) => {
@@ -70,10 +71,10 @@ function NoteApp() {
       <div className="app" data-theme={theme}>
         <Suspense fallback={<div>Loading...</div>}>
           <Routes>
-            <Route path="/*" element={<NotesPage user={authedUser} setUser={setAuthedUser} />} />
+            <Route path="/*" element={<NotesPage user={authedUser} setUser={setAuthedUser} categoryActive={categoryActive} />} />
             <Route path="/notes/add" element={<AddNotePage user={authedUser} setUser={setAuthedUser} />} />
             <Route path="/note/:id" element={<DetailNotePage user={authedUser} setUser={setAuthedUser} />} />
-            <Route path="/categories" element={<CategoriesPage user={authedUser} setUser={setAuthedUser} />} />
+            <Route path="/categories" element={<CategoriesPage user={authedUser} setUser={setAuthedUser} setCategoryActive={setCategoryActive} />} />
           </Routes>
         </Suspense>
       </div>

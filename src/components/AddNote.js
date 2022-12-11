@@ -5,6 +5,7 @@ import useInput from "../hooks/useInput";
 import Select from 'react-select'
 import { getCategories } from "../utils/api";
 import { useNavigate } from "react-router-dom";
+import { sweetAlertError, sweetAlertSuccess } from "../utils/sweet-alert";
 
 const AddNote = () => {
   const navigate = useNavigate();
@@ -83,10 +84,11 @@ const AddNote = () => {
     });
 
     if (!error) {
-      return alert(message);
+      navigate('/');
+      return sweetAlertSuccess("Your note is added", "Success!");
     }
 
-    alert(message);
+    sweetAlertError(message);
   }; 
 
   return (
@@ -126,6 +128,7 @@ const AddNote = () => {
           </div>
         </div>
       </section>
+      
     </>
   )
 }

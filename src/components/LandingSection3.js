@@ -5,9 +5,9 @@ import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 function LandingPageSection3() {
     return (
-        <section class="icons-container">
-            <div class="icons">
-                <div class="info">
+        <section className="icons-container">
+            <div className="icons">
+                <div className="info">
                     <h3>Retain more of what you study</h3>
                     <span>Take through notes in an efficient way.</span>
                     <br />
@@ -22,8 +22,8 @@ function LandingPageSection3() {
                     </span>
                 </div>
             </div>
-            <div class="icons">
-                <div class="info_img">
+            <div className="icons">
+                <div className="info_img">
                         <LazyLoadImage
                             alt="section-img2"
                             src="icon-cartoon.png"
@@ -32,8 +32,8 @@ function LandingPageSection3() {
                 </div>
             </div>
 
-            <div class="icons">
-            <div class="info">
+            <div className="icons">
+            <div className="info">
                     <h3>Easy Editing</h3>
                     <span>Notes are a work in progress. Go back and edit.</span>
                     <br />
