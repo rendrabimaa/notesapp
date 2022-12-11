@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Select from 'react-select'
 import { getCategories, getNotes, deleteNote } from "../utils/api";
 import { useSearchParams } from "react-router-dom";
+import { sweetAlertSuccess, sweetConfirm } from "../utils/sweet-alert";
 
 function NotesPage({ user, setUser, categoryActive }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -39,11 +40,16 @@ function NotesPage({ user, setUser, categoryActive }) {
   }, []);
 
   async function onDeleteHandler(id) {
+    if (!(await sweetConfirm())) {
+      return;
+    }
+
     await deleteNote(id);
     
     const { data } = await getNotes();
 
     setNotes(data);
+    sweetAlertSuccess('Your note has been deleted', 'Deleted!');
   }
 
   function onKeywordChangeHandler(event) {

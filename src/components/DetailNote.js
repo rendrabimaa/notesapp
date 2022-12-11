@@ -5,12 +5,13 @@ import useInput from "../hooks/useInput";
 import Select from 'react-select'
 import { getCategories, getNotes } from "../utils/api";
 import { useParams, useNavigate } from "react-router-dom";
+import { sweetAlertError, sweetAlertSuccess } from "../utils/sweet-alert";
 
 let clicked = false;
 function blurText(){
   if (!clicked){
     clicked = true;
-    document.getElementById("blurbtn").innerHTML = "Not Blur Text"
+    document.getElementById("blurbtn").innerHTML = "Unblur Text"
     document.getElementById("note-columns-note").style.filter="blur(5px)";
     document.getElementById("note-summary").style.filter="blur(5px)";   
   }
@@ -47,7 +48,7 @@ const DetailNote = () => {
     }
 
     async function fetchNotes() {
-      const { data} = await getNotes();
+      const { data } = await getNotes();
 
       const newData = data.filter((note) => {
         return note.id === id;
@@ -123,10 +124,11 @@ const DetailNote = () => {
     }, id);
 
     if (!error) {
-      return alert(message);
+      navigate('/');
+      return sweetAlertSuccess("Your note is modified", "Success!");
     }
 
-    alert(message);
+    sweetAlertError(message);
   }; 
 
   return (

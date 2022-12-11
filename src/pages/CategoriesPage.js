@@ -4,6 +4,7 @@ import CategoriesList from "../components/CategoriesList";
 import Search from "../components/Search";
 import { useState } from "react";
 import { getCategories, postCategories, editCategories, deleteCategories } from "../utils/api";
+import { sweetAlertError, sweetAlertSuccess, sweetConfirm } from "../utils/sweet-alert";
 
 function CategoriesPage({ user, setUser, setCategoryActive }) {
   const [categories, setCategories] = useState(null);
@@ -29,17 +30,21 @@ async function addCategory(name, setName) {
 
     setCategories(data);
     setName('');
-    return alert(message);
+    return sweetAlertSuccess("Your category is added", "Success!");
   }
 
-  alert(message);
+  sweetAlertError(message);
 }
 
 async function deleteCategory(id) {
+  if (!(await sweetConfirm())) {
+    return;
+  }
   await deleteCategories(id);
   
   const { data } = await getCategories();
   setCategories(data);
+  sweetAlertSuccess("Your category has been deleted", "Deleted!");
 }
 
 async function editCategory(name, id, setEditActive) {
@@ -52,10 +57,10 @@ async function editCategory(name, id, setEditActive) {
 
     setCategories(data);
     setEditActive(false);
-    return alert(message);
+    return sweetAlertSuccess("Your category is modified", "Success!");
   }
 
-  alert(message);
+  sweetAlertError(message);
 }
 
 let printElementCategories = <p>Loading...</p>;
