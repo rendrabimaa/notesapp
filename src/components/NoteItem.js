@@ -15,7 +15,7 @@ function NoteItem({ id, title, time, summary, onDelete }) {
   return (
     <div className="note-container">
       <div className="note-item-left">
-        <Link to={`/note/${id}`}><h2>{title}</h2></Link>
+        <Link to={`/note/${id}`}><h2 className="title-item">{title}</h2></Link>
         <p className="time">{showFormattedDate(time)}</p>
         <p>{summary}</p>
       </div>

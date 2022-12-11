@@ -31,6 +31,10 @@
   float: right;
 }
 
+.title-item{
+  color: black;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -260,6 +264,9 @@ nav {
   margin: 0 3px;
 }
 
+.note-item-right i{
+  color: black;
+}
 /* LANDING PAGE */
 
 .home {
