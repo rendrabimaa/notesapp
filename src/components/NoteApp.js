@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { getUserLogged, putAccessToken } from "../utils/api";
+import ThemeContext from "../context/ThemeContext";
 const LandingPage = lazy(() => import("../pages/LandingPage"));
 const About = lazy(() => import("../pages/About"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
-const ThemeContext = lazy(() => import("../pages/ThemeContext"));
 const NotesPage = lazy(() => import("../pages/NotesPage"));
 const AddNotePage = lazy(() => import("../pages/AddNotePage"));
 const CategoriesPage = lazy(() => import("../pages/CategoriesPage"));
