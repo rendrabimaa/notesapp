@@ -1,4 +1,4 @@
-const BASE_URL = "https://notes-app-back-end-production.up.railway.app";
+const BASE_URL = "http://localhost:5000";
 
 function getAccessToken() {
   return localStorage.getItem("accessToken");

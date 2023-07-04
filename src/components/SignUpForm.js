@@ -8,7 +8,7 @@ function SignUpForm({ signUp }) {
   const [password, handlePasswordChange] = useInput("");
 
   const onSubmitHandler = (event) => {
-    event.preventDefault();
+    event.Default();
 
     signUp({
       fullname,

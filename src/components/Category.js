@@ -1,14 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { MdDeleteForever, MdOutlineModeEditOutline } from 'react-icons/md';
-import { Link, useNavigate  } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useInput from "../hooks/useInput";
+import CreatableReactSelect from 'react-select/creatable';
 
-const Category = ({id, name, handleEditCategory, handleDeleteCategory, setCategoryActive}) => {
+const Category = ({ id, name, handleEditCategory, handleDeleteCategory, setCategoryActive }) => {
   const navigate = useNavigate();
 
   const [editActive, setEditActive] = useState(false);
   const [newName, setNewName] = useInput(name);
+  const [selectedOption, setSelectedOption] = useState(null);
 
   function handleBtnEditCategory() {
     if (editActive) {
@@ -16,7 +18,7 @@ const Category = ({id, name, handleEditCategory, handleDeleteCategory, setCatego
     }
     setEditActive(true);
   }
-  
+
   function handleBtnCancel() {
     setEditActive(false);
   }
@@ -30,37 +32,45 @@ const Category = ({id, name, handleEditCategory, handleDeleteCategory, setCatego
     navigate('/notes');
   }
 
-  if (editActive) {
-    return (
-      <div className="category new">
-        <textarea
-          rows='8'
-          cols='10'
-          placeholder='Type to add a category...'
-          value={newName}
-          onChange={setNewName}
-        ></textarea>
-        <div className="category-footer">
-          {/* <small>{characterLimit - categoryName.length} remaining</small> */}
-          {/* <button className="save" onClick={handleSaveClick}>Save</button> */}
-          <button className="save" onClick={handleBtnCancel}>Cancel</button>
-          <button className="save" onClick={handleBtnSave}>Save</button>
-        </div>
-      </div>
-    )
+  function handleSelectChange(option) {
+    setSelectedOption(option);
+    if (option) {
+      setNewName(option.label);
+    } else {
+      setNewName(""); 
+    }
   }
+
   return (
     <div className="category">
       <div className='title'>
         <button onClick={() => handleViewCategory(id)}>{name}</button>
       </div>
-      <div className="category-footer">
-        <MdOutlineModeEditOutline className='delete-icons' size='1.3em' onClick={handleBtnEditCategory} />
-        <MdDeleteForever
-          onClick={() => handleDeleteCategory(id)}
-          className='delete-icons' 
-          size='1.3em' />
-      </div>
+      {editActive ? (
+        <div className="category-footer">
+          <CreatableReactSelect
+            isClearable
+            onChange={handleSelectChange}
+            value={selectedOption}
+            onCreateOption={label => {
+              handleSelectChange({ label, value: label });
+            }}
+            options={[
+              { label: name, value: name },
+            ]}
+          />
+          <button className="save" onClick={handleBtnCancel}>Cancel</button>
+          <button className="save" onClick={handleBtnSave}>Save</button>
+        </div>
+      ) : (
+        <div className="category-footer">
+          <MdOutlineModeEditOutline className='delete-icons' size='1.3em' onClick={handleBtnEditCategory} />
+          <MdDeleteForever
+            onClick={() => handleDeleteCategory(id)}
+            className='delete-icons'
+            size='1.3em' />
+        </div>
+      )}
     </div>
   )
 }
