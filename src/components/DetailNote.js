@@ -7,22 +7,6 @@ import { getCategories, getNotes } from "../utils/api";
 import { useParams, useNavigate } from "react-router-dom";
 import { sweetAlertError, sweetAlertSuccess } from "../utils/sweet-alert";
 
-let clicked = false;
-function blurText(){
-  if (!clicked){
-    clicked = true;
-    document.getElementById("blurbtn").innerHTML = "Unblur Text"
-    document.getElementById("note-columns-note").style.filter="blur(5px)";
-    document.getElementById("note-summary").style.filter="blur(5px)";   
-  }
-  else{
-    clicked = false;
-    document.getElementById("blurbtn").innerHTML = "Blur Text"
-    document.getElementById("note-columns-note").style.filter="none";
-    document.getElementById("note-summary").style.filter="none";
-  }
-}
-
 const DetailNote = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -149,7 +133,7 @@ const DetailNote = () => {
           </div>
           <div className="cue-columns">
             <textarea id="cue-columns-note" name="cue-columns-note" className="input-cue" rows="15" cols="50" value={cue} onChange={handleCueChange} />
-            <label htmlFor="cue-columns-note" className="input-label-cue">Cue</label>
+            <label htmlFor="cue-columns-note" className="input-label-cue">Keywords</label>
           </div>
           <div className="summary">
             <div className="summary-note">
@@ -159,7 +143,6 @@ const DetailNote = () => {
           </div>
           <div className="button-sec">
             <div>
-              <button className="note-button" id="blurbtn" onClick={blurText}>Blur Text</button>
               <button className="note-button" onClick={onSaveNoteHandler}> Save Note </button>
               <button className="note-button" onClick={handlePrint}> Export to PDF </button>    
             </div>

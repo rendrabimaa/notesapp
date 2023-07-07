@@ -1,11 +1,14 @@
 import React from "react";
 import NavigationLogin from "../components/NavigationLogin";
+import ReactSelect from "react-select";
 import NoteItem from "../components/NoteItem";
 import { Link } from "react-router-dom";
 import Select from 'react-select'
-import { getCategories, getNotes, deleteNote } from "../utils/api";
+import { getCategories, editCategories, getNotes, deleteNote, deleteCategories } from "../utils/api";
 import { useSearchParams } from "react-router-dom";
 import { sweetAlertSuccess, sweetConfirm } from "../utils/sweet-alert";
+import { Button } from "react-bootstrap";
+import EditCategory from "../components/EditCategory";
 
 function NotesPage({ user, setUser, categoryActive }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -30,14 +33,18 @@ function NotesPage({ user, setUser, categoryActive }) {
 
       setNotes(data);
     }
-    async function fetchCategories() {
-      const { data } = await getCategories();
-
-      setCategories(data);
-    }
     fetchNotes();
-    fetchCategories();
+    fetchCategories()
+    
   }, []);
+
+
+
+  async function fetchCategories() {
+    const { data } = await getCategories();
+
+    setCategories(data);
+  }
 
   async function onDeleteHandler(id) {
     if (!(await sweetConfirm())) {
@@ -65,7 +72,7 @@ function NotesPage({ user, setUser, categoryActive }) {
 
   if (notes !== null) {
     if (notes.length === 0) {
-      printElementNotes = <p>Add or Choose a Category to add a new Note!</p>; 
+      printElementNotes = <p className="empty-notes">Add or Choose a Category to add a new Note!</p>; 
     } else {
       let newNotes = notes.filter((note) => {
         return note.title.toLowerCase().includes(keyword.toLowerCase());
@@ -82,7 +89,7 @@ function NotesPage({ user, setUser, categoryActive }) {
         printElementNotes = (
           <>
             {newNotes.map((note) => (
-              <NoteItem key={note.id} id={note.id} title={note.title} summary={note.summary} time={note.created_at} onDelete={onDeleteHandler} />
+              <NoteItem key={note.id} id={note.id} title={note.title} keywords={note.cue} summary={note.summary} time={note.created_at} onDelete={onDeleteHandler} />
             ))}
           </>
         )
@@ -91,14 +98,12 @@ function NotesPage({ user, setUser, categoryActive }) {
   }
 
   let printElementSelect = (
-    <Select 
-      options={options} 
-      // defaultKeyword="asd"
-      // defaultValue={options.filter(option => option.value === categoryActive)[0]} 
-      isDisabled={true}
-      isLoading={true}
-      className="react-select-container" 
-      
+    <ReactSelect
+      value={options}
+      options={options}
+      onChange={options}
+      placeholder="cari category disini..."
+      isSearchable // Tambahkan properti isSearchable di sini
     />
   );
 
@@ -112,7 +117,7 @@ function NotesPage({ user, setUser, categoryActive }) {
         options={options} 
         value={options.filter(option => option.value === category)[0]} 
         onChange={onSelectChangeHandler}
-        isSearchable={false}
+        isSearchable={true}
         className="react-select-container" 
         theme={(theme) => ({
           ...theme,
@@ -128,6 +133,12 @@ function NotesPage({ user, setUser, categoryActive }) {
     )
   }
 
+  async function onDeleteCategoryHandle(id) {
+    await deleteCategories(id);
+
+    fetchCategories();
+  }
+
   return (
     <>
       <NavigationLogin user={user} setUser={setUser} />
@@ -140,8 +151,11 @@ function NotesPage({ user, setUser, categoryActive }) {
             <p className="cat-text"><b> Category</b></p>
             {printElementSelect}
           </div>
+          <div className="button-edit-category">
+            <EditCategory categories={categories} onDeleteCategory={onDeleteCategoryHandle}/>
+          </div>
           <div className="add-container">
-            <Link to="/notes/add"><i class="fa-solid fa-plus"></i> Add new note</Link>
+            <Link to="/notes/add"><i className="fa-solid fa-plus"></i> Add new note</Link>
           </div>
         </div>
         <div className="notes-container">

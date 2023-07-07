@@ -103,6 +103,7 @@
 // export { extractKeywords, extractSentences };
 
 // ************************************* TF-IDF & TEXTRANK *************************************************
+import { convertToPascalCase, pascalCaseInSentence, toPascalCaseArray } from './pascal-case.js';
 import stopwords from './stopwords.js';
 
 function tokenizeText(text) {
@@ -178,7 +179,7 @@ function extractKeywords(text, minKeywords, maxKeywords) {
       if (!graph[word1]) {
         graph[word1] = [];
       }
-      graph[word1].push(word2);
+        graph[word1].push(word2)
     }
   }
 
@@ -188,7 +189,12 @@ function extractKeywords(text, minKeywords, maxKeywords) {
   );
 
   const numKeywords = Math.max(5, Math.floor(0.2 * sortedWords.length));
-  const keywords = sortedWords.slice(0, numKeywords);
+  let keywords = sortedWords.slice(0, numKeywords);
+
+  keywords = keywords.filter(function(word) {
+    return !(word.startsWith("me") && word.length >= 6);
+  });
+  keywords = toPascalCaseArray(keywords);
   return keywords;
 }
 
@@ -220,11 +226,13 @@ function extractSentences(sentences, minSentences, maxSentences) {
   const summarySentences = sortedSentences.slice(0, numSentences);
 
   // Remove stopwords from summary sentences
-  const summarySentencesWithoutStopwords = summarySentences.map(sentence => {
+  let summarySentencesWithoutStopwords = summarySentences.map(sentence => {
     const tokens = tokenizeText(sentence);
     const filteredTokens = removeStopwords(tokens);
     return filteredTokens.join(' ');
   });
+
+  summarySentencesWithoutStopwords = pascalCaseInSentence(summarySentencesWithoutStopwords);
 
   return summarySentencesWithoutStopwords;
 }

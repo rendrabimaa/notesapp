@@ -11,17 +11,18 @@ const showFormattedDate = (date) => {
   return new Date(date).toLocaleDateString("en", options);
 };
 
-function NoteItem({ id, title, time, summary, onDelete }) {
+function NoteItem({ id, title, time, keywords, summary, onDelete }) {
   return (
     <div className="note-container">
       <div className="note-item-left">
         <Link to={`/note/${id}`}><h2 className="title-item">{title}</h2></Link>
         <p className="time">{showFormattedDate(time)}</p>
-        <p>{summary}</p>
+
+        <p>{keywords}</p>
       </div>
       <div className="note-item-right">
-        <Link to={`/note/${id}`}><i class="fa-regular fa-pen-to-square"></i></Link>
-        <i class="fa-solid fa-circle-xmark" onClick={() => onDelete(id)}></i>
+        <Link to={`/note/${id}`}><i className="fa-regular fa-pen-to-square"></i></Link>
+        <i className="fa-solid fa-circle-xmark" onClick={() => onDelete(id)}></i>
       </div>
     </div>
   )

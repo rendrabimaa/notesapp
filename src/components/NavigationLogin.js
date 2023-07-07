@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { putAccessToken } from "../utils/api";
 import ThemeButton from './buttons/ThemeButton';
 import { IoMdLogOut } from 'react-icons/io';
+import { convertToPascalCase } from "../utils/pascal-case";
 
 function NavigationLogin({ user, setUser }) {
   function logoutHandler() {
@@ -22,10 +23,7 @@ function NavigationLogin({ user, setUser }) {
             <Link to='/'  className="login-text">Notes</Link>
           </li>
           <li>
-            <Link to='/categories'  className="login-text">Categories</Link>
-          </li>
-          <li>
-            <button onClick={logoutHandler}>{user.fullname} <IoMdLogOut className="logoutbutton"/></button>
+            <button onClick={logoutHandler}>{convertToPascalCase(user.fullname)} <IoMdLogOut className="logoutbutton"/></button>
           </li>
         </ul>
       </div>

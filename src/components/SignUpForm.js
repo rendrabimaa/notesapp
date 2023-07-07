@@ -1,20 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import useInput from "../hooks/useInput";
 import PropTypes from "prop-types";
+import { sweetAlertError } from "../utils/sweet-alert";
 
 function SignUpForm({ signUp }) {
   const [fullname, handleFullnameChange] = useInput("");
   const [username, handleUsernameChange] = useInput("");
   const [password, handlePasswordChange] = useInput("");
+  const [error, setError] = useState('');
+
+  
+
 
   const onSubmitHandler = (event) => {
-    event.Default();
+    event.preventDefault();
 
-    signUp({
-      fullname,
-      username,
-      password,
-    });
+    
+    if (password.length === 0) {
+      setError('Password harus diisi.');
+      sweetAlertError('Yahh :(', error);
+    } else if (password.length < 8) {
+      setError('Password harus memiliki minimal 8 karakter.');
+      sweetAlertError('Password harus memiliki Minimal 8 Karakter');
+    }else{
+      signUp({
+        fullname,
+        username,
+        password,
+      });
+    }
+
   };
 
   console.log(fullname);
@@ -39,7 +54,7 @@ function SignUpForm({ signUp }) {
               <div className="button input-box">
                 <input type="submit" value="Submit"/>
               </div>
-              <div className="text sign-up-text">Already have an account? <label for="flip">Login now</label></div>
+              <div className="text sign-up-text">Already have an account? <label htmlFor="flip">Login now</label></div>
             </div>
       </form>
     </div>

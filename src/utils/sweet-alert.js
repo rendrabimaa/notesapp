@@ -8,6 +8,8 @@ function sweetAlertSuccess(html, title) {
     title,
     html,
     icon: "success",
+    showConfirmButton: false,
+    timer: 1000,
     confirmButtonColor: "#694E4E",
   });
 }

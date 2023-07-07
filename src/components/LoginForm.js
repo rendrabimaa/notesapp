@@ -59,7 +59,7 @@ function LoginForm({ login, signUp }) {
                   <div className="button input-box">
                     <input type="submit" value="Submit" />
                   </div>
-                  <div className="text sign-up-text">Don't have an account? <label for="flip">Sign up now</label></div>
+                  <div className="text sign-up-text">Don't have an account? <label htmlFor="flip">Sign up now</label></div>
                 </div>
               </form>
             </div>

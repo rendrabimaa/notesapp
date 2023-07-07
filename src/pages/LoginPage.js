@@ -3,6 +3,7 @@ import Navigation from "../components/Navigation";
 import LoginForm from "../components/LoginForm";
 import { login, signUp } from "../utils/api";
 import LandingPageFooter from "../components/Footer";
+import { sweetAlertSuccess } from "../utils/sweet-alert";
 
 function LoginPage({ loginSuccess }) {
   async function onLoginHandler(user) {
@@ -19,6 +20,9 @@ function LoginPage({ loginSuccess }) {
   async function onSignUpHandler(user) {
     const { error } = await signUp(user);
     if (!error) {
+
+      sweetAlertSuccess('Selamat Anda Telah Berhasil Daftar', 'Yeayy!!');
+
       document.getElementById('flip').checked = false;
       const input = document.querySelectorAll('.signup-form input');
       input[0].value = '';

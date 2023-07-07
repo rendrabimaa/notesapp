@@ -1,11 +1,9 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useRef } from "react";
-import { Container, Form, Stack, Row, Col, Button } from "react-bootstrap"
 import { useReactToPrint } from "react-to-print";
 import { postNotes } from "../utils/api";
 import useInput from "../hooks/useInput";
-import Select from 'react-select';
-import { getCategories } from "../utils/api";
+import CreateableReactSelect from "react-select/creatable";
+import { getCategories, postCategories} from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { sweetAlertError, sweetAlertSuccess } from "../utils/sweet-alert";
 import { extractKeywords, extractSentences } from "../utils/textrank";
@@ -16,10 +14,12 @@ const AddNote = () => {
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-  });
+  })
 
   const [title, handleTitleChange] = useInput("");
   const [main, handleMainChange] = useInput("");
+  const [cue, handleCueChange] = useInput("");
+  const [summary, handleSummaryChange] = useInput("");
   const [categories, setCategories] = React.useState(null);
   const [category, setCategory] = React.useState("none");
 
@@ -32,51 +32,27 @@ const AddNote = () => {
     fetchCategories();
   }, []);
 
-  const options = [
-    { value: 'none', label: 'None' }
-  ];
 
-  let printElementSelect = (
-    <Select 
-      options={options} 
-      isDisabled={true}
-      isLoading={true}
-      className="react-select-container" 
-    />
-  );
-
-  if (categories !== null) {
-    for (let i = 0; i < categories.length; i++) {
-      options.push({value: categories[i].id, label: categories[i].name});
+  async function addCategory(name) {
+    const { error, message } = await postCategories({
+      name,
+    });
+  
+    if (!error) {
+      const { data } = await getCategories();
+  
+      setCategories(data);
+      return sweetAlertSuccess("Your category is added", "Success!");
     }
-
-    printElementSelect = (
-      <Select 
-        options={options} 
-        value={options.filter(option => option.value === category)[0]} 
-        onChange={onSelectChangeHandler}
-        isSearchable={false}
-        className="react-select-container" 
-        theme={(theme) => ({
-          ...theme,
-          borderRadius: 0,
-          colors: {
-            ...theme.colors,
-            primary25: 'gray',
-            primary50: '#fff',
-            primary: 'black',
-          },
-        })}
-      />
-    );
+  
+    sweetAlertError(message);
   }
 
   function onSelectChangeHandler(event) {
     setCategory(event.value);
   }
 
-  async function onSaveNoteHandler(event) {
-    event.preventDefault();
+  async function onSaveNoteHandler() {
 
     const cueArray = extractKeywords(main, 5, 20); // Ekstraksi 5 hingga 20 kata sebagai keyword
     const cueList = cueArray.map((cue, index) => `- ${cue}`).join('\n');
@@ -84,7 +60,8 @@ const AddNote = () => {
     const sentences = main.split('.');
     const summaryArray = extractSentences(sentences, 3, 5); // Ekstraksi 3 hingga 5 kalimat sebagai ringkasan
     const summaryList = summaryArray.map((summary, index) => `- ${summary}`).join('\n');
-
+    console.log(summaryList);
+    console.log(cueList);
     const { error, message } = await postNotes({
       title,
       main,
@@ -99,47 +76,46 @@ const AddNote = () => {
     }
 
     sweetAlertError(message);
-  } 
-
-  
+  }; 
 
   return (
-    <Container className='my-4'>
-      <section>
+    <>
+      <section className="addnote-page" ref={componentRef}>
         <div className="select-add">
           <h1>CATEGORY </h1>
-          {printElementSelect}
+          <CreateableReactSelect
+            options={categories !== null && categories.map(category => {
+              return {label: category.name, value:category.id}
+            })}
+            onCreateOption={label => {
+              addCategory(label)
+            }}
+            onChange={onSelectChangeHandler}
+          />         
         </div>
-          <Form onSubmit={onSaveNoteHandler}>
-            <Stack gap={4}>
-              <Row>
-                <Col>
-                  <Form.Group controlId="titlenote">
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control type="text" placeholder="Title" value={title} onChange={handleTitleChange} />
-                  </Form.Group>
-                </Col>
-                <Col>
-                  <Form.Group controlId=''>
-
-                  </Form.Group>
-                </Col>
-              </Row>
-            </Stack>
-            <div className="note-columns" id="note-columns">
-              <textarea id="note-columns-note" name="columns-note" className="input-notee" rows="15" cols="50" value={main} onChange={handleMainChange} />
-              <label htmlFor="columns-note" className="input-label-note">Notes </label>
+      
+     
+        <div className="container-addnote">
+          <div className="title-addnote" >
+            <input type="text" name="titlenote" id="titlenote" className="input-field" placeholder="Title" value={title} onChange={handleTitleChange} />
+            <label htmlFor="titlenote" className="input-label">Title</label>
+          </div>
+          <div className="note-columns" id="note-columns">
+            <textarea id="note-columns-note" name="columns-note" className="input-notee" rows="15" cols="50" value={main} onChange={handleMainChange} />
+            <label htmlFor="columns-note" className="input-label-note">Notes </label>
+          </div>
+          <div className="button-sec">
+            <div>
+              <button className="note-button" onClick={onSaveNoteHandler}> Save Note </button>
+              <button className="note-button" onClick={handlePrint}> Export to PDF </button>    
             </div>
-            <div className="button-sec">
-              <div>
-                <Button variant="primary" className="note-button" type="submit"> Save Note </Button>
-                <Button variant="primary" className="note-button" onClick={handlePrint}> Print Note </Button>
-              </div>
-            </div>
-          </Form>
+          </div>
+        </div>
       </section>
-    </Container>
-  );
-};
+      
+    </>
+  )
+}
+
 
 export default AddNote;

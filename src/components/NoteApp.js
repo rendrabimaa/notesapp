@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import { getUserLogged, putAccessToken } from "../utils/api";
 import ThemeContext from "../context/ThemeContext";
+import { sweetAlertSuccess } from "../utils/sweet-alert";
 const LandingPage = lazy(() => import("../pages/LandingPage"));
 const About = lazy(() => import("../pages/About"));
 const LoginPage = lazy(() => import("../pages/LoginPage"));
@@ -46,6 +47,8 @@ function NoteApp() {
   async function onLoginSuccess({ accessToken }) {
     putAccessToken(accessToken);
     const { data } = await getUserLogged();
+
+    sweetAlertSuccess('Selamat Anda Telah Berhasil Login', 'Yeayy!!');
 
     setAuthedUser(data);
   }

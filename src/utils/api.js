@@ -1,3 +1,5 @@
+import { sweetAlertError } from "./sweet-alert";
+
 const BASE_URL = "http://localhost:5000";
 
 function getAccessToken() {
@@ -30,8 +32,8 @@ async function login({ username, password }) {
   const responseJson = await response.json();
 
   if (responseJson.status !== "success") {
-    alert(responseJson.message);
-    // sweetAlertError(responseJson.message);
+    // alert(responseJson.message);
+    sweetAlertError('Username atau Password yang anda masukkan Salah');
 
     return { error: true, data: null };
   }
@@ -52,7 +54,7 @@ async function signUp({ fullname, username, password }) {
   console.log(responseJson);
 
   if (responseJson.status !== "success") {
-    alert(responseJson.message);
+    sweetAlertError(responseJson.message)
     // sweetAlertError(responseJson.message);
     return { error: true };
   }

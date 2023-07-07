@@ -6,45 +6,43 @@ import LandingPageSection2 from "../components/LandingSection2";
 import LandingPageSection3 from "../components/LandingSection3";
 import Navigation from "../components/Navigation";
 
-
-
 function LandingPage() {
-    return (
-        <>
-            <Navigation />
-            <LandingPageBody />
-            <LandingPageSection
-                image={"taking-notes.png"}
-                title={"Synthesize & apply learned knowledge"}
-                subtitle={
-                    "Without taking notes, only 10% of what you hear may last in memory. With good note-taking, that number can go up to over 80%. Despite the benefits of note-taking, 1 out of every 3 students do not take notes."
-                }
-                subtitle2={"Cornell note-taking is one of the most frequently recommended note-taking formats by universities and high schools. It helps you take useful notes in an efficient way, allowing the notes to be used for review and self-quizzing. Take better notes with Note IT!."} />
-            <LandingPageSection2
-                image={"search-notes.png"} 
-                title={"Search all your Notes Quickly"}
-                subtitle={"Use the Cosmic Search to search through all your sheets, notes, and summaries in any folder. Results highlighted and filtered in real-time as you type. Click on a search result to be taken to its sheet."}
-                subtitle2={"Implement your own tagging system just by using text and search. If you’ve written it, you can find it."}
-
-            />
-            <LandingPageSection
-            image={"light-or-dark.png"}
-            title={"Light or Dark"}
-                subtitle={
-                    "The sunlight hurts your eyes? Pulling an all-nighter? Don't want to wake up your roommate? Turn off the lights. Click the crescent moon on the upper right to step into the dark side"
-                }
-                subtitle2={"Step into the light by clicking the sun next to the moon. These settings will be remembered when you close the app."} />
-            <LandingPageSection2 
-            image={"Upload-bro.png"}
-            title={"Export your Notes "}
-                subtitle={"At any time, you can print your notes or export them as PDF to share with others or review outside of the app such as in Preview, or on another device. You can easily export your notes with Note IT!"}
-                subtitle2={"Exported sheets are full-spec two-column Cornell notes, including the title, notes, and summary, and can be multiple pages."}
-
-            />
-            <LandingPageSection3 />
-            <LandingPageFooter />
-        </>
-    )
+return (
+<>
+<Navigation />
+<LandingPageBody />
+<LandingPageSection
+image={"taking-notes.png"}
+title={"Mensintesis & menerapkan pengetahuan yang dipelajari"}
+subtitle={
+"Tanpa mengambil catatan, hanya 10% dari apa yang Anda dengar yang dapat bertahan dalam ingatan. Dengan mengambil catatan yang baik, angka tersebut bisa mencapai lebih dari 80%. Meskipun ada manfaat dari pengambilan catatan, 1 dari setiap 3 siswa tidak mengambil catatan."
+}
+subtitle2={"Pengambilan catatan Cornell adalah salah satu format pengambilan catatan yang paling sering direkomendasikan oleh perguruan tinggi dan sekolah menengah. Ini membantu Anda mengambil catatan yang berguna dengan cara yang efisien, sehingga catatan dapat digunakan untuk ulasan dan pengujian diri. Ambil catatan yang lebih baik dengan Note IT!"}
+/>
+<LandingPageSection2
+image={"search-notes.png"}
+title={"Cari Semua Catatan Anda dengan Cepat"}
+subtitle={"Gunakan Pencarian Kosmis untuk mencari melalui semua lembaran, catatan, dan ringkasan di setiap folder. Hasil akan disorot dan difilter secara real-time saat Anda mengetik. Klik pada hasil pencarian untuk menuju ke lembaran tersebut."}
+subtitle2={"Terapkan sistem tagging sendiri hanya dengan menggunakan teks dan pencarian. Jika Anda pernah menulisnya, Anda bisa menemukannya."}
+/>
+<LandingPageSection
+image={"light-or-dark.png"}
+title={"Terang atau Gelap"}
+subtitle={
+"Sinar matahari menyakitkan mata Anda? Begadang semalaman? Tidak ingin membangunkan teman sekamar Anda? Matikan lampu. Klik bulan sabit di kanan atas untuk beralih ke mode gelap."
+}
+subtitle2={"Beralih ke mode terang dengan mengklik matahari di sebelah bulan. Pengaturan ini akan diingat ketika Anda menutup aplikasi."}
+/>
+<LandingPageSection2
+image={"Upload-bro.png"}
+title={"Ekspor Catatan Anda"}
+subtitle={"Kapan saja, Anda dapat mencetak catatan Anda atau mengekspornya sebagai PDF untuk dibagikan kepada orang lain atau ulasan di luar aplikasi seperti di Preview, atau pada perangkat lainnya. Anda dapat dengan mudah mengekspor catatan Anda dengan Note IT!"}
+subtitle2={"Lembaran yang diekspor adalah catatan Cornell dua kolom yang lengkap, termasuk judul, catatan, dan ringkasan, dan dapat berupa beberapa halaman."}
+/>
+<LandingPageSection3 />
+<LandingPageFooter />
+</>
+)
 }
 
 export default LandingPage;
