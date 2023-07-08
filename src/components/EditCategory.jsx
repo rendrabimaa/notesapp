@@ -1,16 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Button, Modal, ListGroup } from 'react-bootstrap';
 import { sweetConfirm } from '../utils/sweet-alert';
 
-function EditCategory({categories, onDeleteCategory}) {
+function EditCategory({categories, onDeleteCategory, onEditCategory}) {
+    // const [categorie, setCategorie] = useState([
+    //   {
+    //     id:1,
+    //     name: 'John'
+    //   },{
+    //     id:2,
+    //     name:'jane'
+    //   },{
+    //     id:3,
+    //     name: 'lol'
+    //   }
+    // ])
+    const [name, setName] = useState("")
     const [category, setCategory] = useState([])
     const [showModal, setShowModal] = useState(false);
-    // const [inputCategory, setInputCategory] = useState([]);
-    const [selectedCategory, setSelectedCategory] = useState(null);
 
     useEffect(() => {
-        // console.log(categories);
-        // setInputCategory(categories);
+        console.log(categories);
         setCategory(categories);
     }, [])
 
@@ -18,19 +28,32 @@ function EditCategory({categories, onDeleteCategory}) {
         setShowModal(false);
     }
 
-    const handleEditCategory = (index, value) => {
-        // const newData = inputCategory;
-        // newData[index].name = value;
+    // const handleEditCategory = (event, index) => {
+    //     const updatedCategory = [...editedCategory];
+    //     updatedCategory[index] = event.target.value;
 
-        // setInputCategory(value);
-        // console.log(inputCategory)
-    }
+    //     setCategory(updatedCategory);
+    //     // console.log(inputCategory)
+    // }
 
     const handleDeleteCategory = async (id) => {
-      // if (!(await sweetConfirm())) {
-      //   return;
-      // }
-      onDeleteCategory(id)
+      await onDeleteCategory(id)
+    }
+
+    const handleEditChange = (event) => {
+      setCategory(event.target.value)
+    }
+
+    const handleEditCategory = (event, id) => {
+      onEditCategory(event.target.value, id) 
+      // const updateData = category.map(item => {
+      //   if(item.id === id) {
+      //     return { ...item, name}
+      //   }
+      //   return item
+      // })
+
+      // setCategory(updateData);
     }
 
     return (
@@ -46,10 +69,17 @@ function EditCategory({categories, onDeleteCategory}) {
               &times;
             </span>
             <ul>
-                {categories.map((category, index) => (
+                {category.map((cat, index) => (
                     <li key={index} className='list-category-edit'>
-                      <input  type="text" value={category.name} onChange={e => handleEditCategory(index, e.target.value)}/>
-                      <button className='delete-category-button' onClick={() => handleDeleteCategory(category.id)}>&times;</button>
+                      {/* <form onSubmit={event => handleSubmit(event, cat.id)}> */}
+                        <input type="text"
+                        value={cat.name}
+                        onChange={handleEditChange}
+                        />
+                        <button className='edit-category-button' onClick={handleEditCategory}>V</button>
+                        <button className='delete-category-button' onClick={() => handleDeleteCategory(cat.id)}>&times;</button>
+
+                      {/* </form> */}
                     </li>
                 ))}
             </ul>

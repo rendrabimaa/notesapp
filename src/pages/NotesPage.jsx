@@ -139,6 +139,13 @@ function NotesPage({ user, setUser, categoryActive }) {
     fetchCategories();
   }
 
+  async function onEditCategoryHandle(id, name) {
+    console.log(name)
+    // await editCategories({name}, id)
+
+    // fetchCategories();
+  }
+
   return (
     <>
       <NavigationLogin user={user} setUser={setUser} />
@@ -152,7 +159,7 @@ function NotesPage({ user, setUser, categoryActive }) {
             {printElementSelect}
           </div>
           <div className="button-edit-category">
-            <EditCategory categories={categories} onDeleteCategory={onDeleteCategoryHandle}/>
+            <EditCategory categories={categories} onDeleteCategory={onDeleteCategoryHandle} onEditCategory={onEditCategoryHandle}/>
           </div>
           <div className="add-container">
             <Link to="/notes/add"><i className="fa-solid fa-plus"></i> Add new note</Link>

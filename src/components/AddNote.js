@@ -1,20 +1,16 @@
 import React, { useRef } from "react";
-import { useReactToPrint } from "react-to-print";
 import { postNotes } from "../utils/api";
 import useInput from "../hooks/useInput";
 import CreateableReactSelect from "react-select/creatable";
 import { getCategories, postCategories} from "../utils/api";
 import { useNavigate } from "react-router-dom";
 import { sweetAlertError, sweetAlertSuccess } from "../utils/sweet-alert";
-import { extractKeywords, extractSentences } from "../utils/textrank";
+import { extractKeywords, extractSentences} from "../utils/textrank";
 
 const AddNote = () => {
   const navigate = useNavigate();
 
   const componentRef = useRef();
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  })
 
   const [title, handleTitleChange] = useInput("");
   const [main, handleMainChange] = useInput("");
@@ -34,15 +30,15 @@ const AddNote = () => {
 
 
   async function addCategory(name) {
+    
     const { error, message } = await postCategories({
       name,
     });
   
     if (!error) {
       const { data } = await getCategories();
-  
       setCategories(data);
-      return sweetAlertSuccess("Your category is added", "Success!");
+      return sweetAlertSuccess("Kategori berhasil ditambahkan", "Yeayyy!");
     }
   
     sweetAlertError(message);
@@ -53,7 +49,6 @@ const AddNote = () => {
   }
 
   async function onSaveNoteHandler() {
-
     const cueArray = extractKeywords(main, 5, 20); // Ekstraksi 5 hingga 20 kata sebagai keyword
     const cueList = cueArray.map((cue, index) => `- ${cue}`).join('\n');
 
@@ -72,7 +67,7 @@ const AddNote = () => {
 
     if (!error) {
       navigate('/');
-      return sweetAlertSuccess("Your note is added", "Success!");
+      return sweetAlertSuccess("Catatan Berhasil Ditambahkan", "Yeyy!");
     }
 
     sweetAlertError(message);
@@ -107,7 +102,6 @@ const AddNote = () => {
           <div className="button-sec">
             <div>
               <button className="note-button" onClick={onSaveNoteHandler}> Save Note </button>
-              <button className="note-button" onClick={handlePrint}> Export to PDF </button>    
             </div>
           </div>
         </div>
