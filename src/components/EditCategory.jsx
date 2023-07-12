@@ -69,14 +69,15 @@ function EditCategory({categories, onDeleteCategory, onEditCategory}) {
               &times;
             </span>
             <ul>
-                {category.map((cat, index) => (
-                    <li key={index} className='list-category-edit'>
+                {categories.map((cat, index) => (
+                    <li key={index} className='list-category-edit' id='edit-list'>
                       {/* <form onSubmit={event => handleSubmit(event, cat.id)}> */}
-                        <input type="text"
+                        <input type="text" id='edit-input'
+                        className='edit-show'
                         value={cat.name}
                         onChange={handleEditChange}
                         />
-                        <button className='edit-category-button' onClick={handleEditCategory}>V</button>
+                        {/* <button id='edit-category-button' onClick={handleEditCategory}>V</button> */}
                         <button className='delete-category-button' onClick={() => handleDeleteCategory(cat.id)}>&times;</button>
 
                       {/* </form> */}

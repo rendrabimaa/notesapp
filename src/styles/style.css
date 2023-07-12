@@ -203,32 +203,72 @@ nav {
 }
 
 /* Notes Page */
+
+
+.title-note {
+  font-size:xx-large;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.contain-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-edit {
+  display: flex;
+  align-items: center;
+}
+
+.button-edit-category {
+  margin-left: 20px;
+}
+
 .notes-page-container {
   margin: 0 auto;
   margin-top: 120px;
   width: 95%;
-  max-width: 1000px;
+  max-width: 1200px;
+}
+
+.note-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-container {
+  width: 47%;
+}
+
+.martop {
+  margin-top: 40px;
 }
 
 .search-container .search {
   width: 100%;
-  padding: 15px 10px;
+  padding: 10px 10px;
+  border-radius: 5px;
   border: 1px solid #ccc;
   margin-top: 8px;
-  margin-right: 16px;
-  font-size: 1.1rem;
+  font-size: large;
+  background-color: white;
 }
 
 .select-add-container {
-  margin-top: 15px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+  width: 47%;
 }
 
 .select-container {
-  width: 70%;
+  width: 100%;
+}
+
+.category-select {
+  width: 100%;
+  border-radius: 5px;
+  background-color: red;
 }
 
 .select-container p {
@@ -239,10 +279,6 @@ nav {
   color: inherit;
   font-size: 16px;
   cursor: pointer;
-}
-
-.react-select-container {
-  max-width: 300px;
 }
 
 .empty-notes {
@@ -259,6 +295,23 @@ nav {
   background-color: black;
   color: white;
   font-weight: 500;
+}
+
+#edit-list {
+  display: flex;
+}
+
+#edit-input {
+  border-color: #000;
+  color: black;
+  outline: black;
+  border-top: 1px;
+}
+
+#edit-category-button {
+  padding: 4px 8px;
+  background-color: black;
+  color: white;
 }
 
 
@@ -318,6 +371,12 @@ nav {
   border: #000;
 }
 
+.edit-show {
+  border: 1px solid gainsboro;
+  color: black;
+}
+
+
 .delete-category-button {
   padding: 4px 6px;
   font-size: large;
@@ -330,17 +389,40 @@ nav {
 
 .notes-container {
   margin-top: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .note-container {
-  width: 100%;
-  background-color: #F5F5F5;
+  width: 33%;
+  margin: 0 2px;
   margin-bottom: 15px;
   padding: 15px;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  border: 2px solid gainsboro;
+}
+
+.note-item-top {
+  display: flex;
+  margin-bottom: 6px;
+}
+
+.note-date {
+  width: 100%;
+}
+
+.time {
+  font-size: small;
+}
+
+.keywords {
+  color: blue;
+  font-size: smaller;
 }
 
 .note-container .time {
@@ -939,43 +1021,99 @@ section {
 /* ADD NOTE PAGE */
 
 .addnote-page{
-  margin-top: 50px;
-  background-color: #F3F3F3;
+  margin-top: 90px ;
+  padding-bottom: 100px;
+  /* background-color: #F3F3F3; */
 }
 
-.select-add {
-  margin-bottom: 10px;
-}
-
-.select-add h1 {
-  font-size: 28px;
-  margin-bottom: 5px;
-}
 
 .container-addnote {
-  display: grid;
-  height: 90vh;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: 0.2fr 2fr 1fr 0.2fr;
-  grid-template-areas:
-    "title title  "
-    "note note  "
-    "buttonn buttonn ";
-  grid-gap: 0rem;
-  font-weight: 800;
-  font-size: 12px;
-  text-align: center;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  font-size: large;
+}
+
+.add-title {
+  margin: 0 auto;
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .title-addnote {
-  background: var(--background);
-  grid-area: title;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  padding-top: 50px;
-  min-height: 100px;
-  border-bottom: 3px solid var(--text);
+  width: 47%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-label {
+  margin-bottom: 10px;
+}
+
+.input-field {
+  font-size: large;
+  border-radius: 5px;
+  height: 36px;
+  padding: 16px 12px;
+  border: 1px solid gainsboro;
+}
+
+.input-field:focus {
+  border: 3px solid rgb(152, 152, 253);
+}
+
+.select-add p {
+  margin-bottom: 10px;
+}
+
+.kategori-add-note {
+  font-size: large;
+}
+
+.select-add {
+  display: flex;
+  flex-direction: column;
+  width: 47%;
+}
+
+.note-columns {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.input-notee {
+  font-size: large;
+  border: 1px solid gainsboro;
+  width: 100%;
+  border-radius: 5px;
+  padding: 20px 20px;
+}
+
+.input-notee:focus {
+  border: 4px solid rgb(152, 152, 253);
+}
+
+.input-label-note {
+  margin-bottom: 10px;
+
+}
+
+.note-button {
+  margin-top: 10px;
+  margin-right: 0;
+  background-color: blue;
+  color: white;
+  font-size: large;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.button-sec {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: end;
 }
 
 .cue-columns {
@@ -984,13 +1122,6 @@ section {
   padding-top: 60px;
   min-height: 350px;
   border-right: 3px solid var(--text);
-}
-
-.note-columns{
-  background: var(--background);
-  grid-area: note;
-  padding-top: 60px;
-  min-height: 350px;
 }
 
 .summary {
@@ -1002,157 +1133,6 @@ section {
   border-top: 3px solid var(--text);
 }
 
-.note-button{
-  background: white;
-  min-height: 50px;
-  grid-area: buttonn;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.input-field{
-  width: 100%;
-  outline: 0;
-  border: 0;
-  border-bottom: 2px solid var(--text);
-  padding: 10px 0;
-  background: transparent;
-  font-size: 2em;
-  color: var(--text);
-  transition: 0.3s ease;
-  padding-left: 20px;
-}
-
-.input-summary{
-  width: 100%;
-  outline: 0;
-  border: 0;
-  background: transparent;
-  font-size: 2em;
-  color: var(--text);
-  transition: 0.3s ease;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.input-cue{
-  width: 100%;
-  outline: 0;
-  border: 0;
-  background: transparent;
-  font-size: 2em;
-  color: var(--text);
-  transition: 0.3s ease;
-  padding-left: 20px;
-  padding-right: 20px;
-
-  
-}
-
-.input-notee{
-  width: 100%;
-  outline: 0;
-  border: 0;
-  background: transparent;
-  font-size: 2em;
-  color: var(--text);
-  transition: 0.3s ease;
-  padding-left: 20px;
-  padding-right: 20px;
-  
-}
-.input-label{
-  display: block;
-  position: absolute;
-  top: 185px;
-  font-size: 2em;
-  color: var(--text);
-  text-transform: uppercase;
-  transition: 0.3s ease;
-  margin-left: 20px;
-}
-
-.input-label-summary{
-  display: block;
-  position: absolute;
-  top: 640px;
-  font-size: 2em;
-  color:var(--text);
-  text-transform: uppercase;
-  transition: 0.3s ease;
-  margin-left: 20px;
-}
-
-.input-label-cue{
-  display: block;
-  position: absolute;
-  top:290px;
-  font-size: 2em;
-  color:var(--text);
-  text-transform: uppercase;
-  transition: 0.3s ease;
-  margin-left: 20px;
-}
-
-
-.input-label-note{
-  display: block;
-  position: absolute;
-  top:290px;
-  font-size: 2em;
-  color:var(--text);
-  text-transform: uppercase;
-  transition: 0.3s ease;
-  margin-left: 20px;
-}
-.input-field::placeholder{
-  color: transparent;
-}
-
-.input-summary::placeholder{
-  color: transparent;
-}
-
-.input-field::placeholder-shown ~ .input-label{
-  font-size:  2em;
-  top: 20px;
-}
-
-.input-field:focus ~ .input-label{
-  display: block;
-  position: absolute;
-  top: 185px;
-  font-size: 2em;
-  color: black;
-}
-
-
-.button-sec{
-  background-color: white;
-  grid-area: buttonn;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-textarea{
-  resize: none;
-}
-
-.note-button {
-  background-color: var(--button); 
-  border: none;
-  color: var(--text);
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 14px;
-  margin: 10px 2px;
-  cursor: pointer;
-  margin-right: 20px;
-  margin-left: 20px;
-  border-radius: 2px;
-}
 
 
 
@@ -1314,46 +1294,6 @@ textarea{
   }
 }
 
-@media screen and (max-width: 600px) {
-  .about-page .about-bio {
-    grid-template-columns: 1fr;
-  }
 
-  .container-addnote {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-    "title"
-    "cue"
-    "note"
-    "summary "
-    "buttonn";
-  }
-
-  .cue-columns{
-    border-bottom: 3px solid black;
-    border-right: 0px;
-    min-height: 500px;
-  }
-
-  .note-columns{
-    min-height: 500px;
-  }
-  .input-label-summary{
-    top:1280px;
-  }
-
-  .input-label-note{
-    top:780px;
-  }
-
-  .addnote-page{
-    height: 1500px;
-  
-  }
-
-  .summary{
-    height: 300px;
-  }
-}
 
 

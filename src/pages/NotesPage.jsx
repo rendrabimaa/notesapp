@@ -104,6 +104,7 @@ function NotesPage({ user, setUser, categoryActive }) {
       onChange={options}
       placeholder="cari category disini..."
       isSearchable // Tambahkan properti isSearchable di sini
+      className="category-select"
     />
   );
 
@@ -118,7 +119,7 @@ function NotesPage({ user, setUser, categoryActive }) {
         value={options.filter(option => option.value === category)[0]} 
         onChange={onSelectChangeHandler}
         isSearchable={true}
-        className="react-select-container" 
+        className="category-select"
         theme={(theme) => ({
           ...theme,
           borderRadius: 0,
@@ -149,20 +150,29 @@ function NotesPage({ user, setUser, categoryActive }) {
   return (
     <>
       <NavigationLogin user={user} setUser={setUser} />
+      
       <div className="notes-page-container">
-        <div className="search-container">
-          <input type="text" placeholder="Search.." className="search" value={keyword} onChange={onKeywordChangeHandler} />
+        <div className="contain-title">
+          <p className="title-note">Notes</p>
+          <div className="header-edit">
+            <div className="add-container">
+              <Link to="/notes/add"><i className="fa-solid fa-plus"></i> Add new note</Link>
+            </div>
+            <div className="button-edit-category">
+              <EditCategory categories={categories} onDeleteCategory={onDeleteCategoryHandle} onEditCategory={onEditCategoryHandle}/>
+            </div>
+          </div>
         </div>
-        <div className="select-add-container">
-          <div className="select-container">
-            <p className="cat-text"><b> Category</b></p>
-            {printElementSelect}
+        <div className="note-header">
+          <div className="search-container">
+            <label>Search Note</label>
+            <input type="text" placeholder="Search.." className="search" value={keyword} onChange={onKeywordChangeHandler} />
           </div>
-          <div className="button-edit-category">
-            <EditCategory categories={categories} onDeleteCategory={onDeleteCategoryHandle} onEditCategory={onEditCategoryHandle}/>
-          </div>
-          <div className="add-container">
-            <Link to="/notes/add"><i className="fa-solid fa-plus"></i> Add new note</Link>
+          <div className="select-add-container">
+            <div className="select-container">
+              <p className="cat-text">Category</p>
+              {printElementSelect}
+            </div>
           </div>
         </div>
         <div className="notes-container">

@@ -167,7 +167,8 @@ function extractKeywords(text, minKeywords, maxKeywords) {
       documentFrequency[token] = documentFrequency[token] ? documentFrequency[token] + 1 : 1;
     }
   }
-
+  console.log(documentFrequency);
+  
   const tfidfScores = calculateTFIDF(tokens, wordFrequency, documentFrequency, 1);
 
   const graph = {};
@@ -194,6 +195,8 @@ function extractKeywords(text, minKeywords, maxKeywords) {
   keywords = keywords.filter(function(word) {
     return !(word.startsWith("me") && word.length >= 6);
   });
+
+
   keywords = toPascalCaseArray(keywords);
   return keywords;
 }

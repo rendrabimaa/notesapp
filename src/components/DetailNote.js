@@ -118,33 +118,32 @@ const DetailNote = () => {
   return (
     <>
       <section className="addnote-page" ref={componentRef}>
-        <div className="select-add">
-          <h1>CATEGORY</h1>
-          {printElementSelect}
-        </div>
         <div className="container-addnote">
-          <div className="title-addnote" >
-            <input type="text" name="titlenote" id="titlenote" className="input-field" placeholder="Title" value={title} onChange={handleTitleChange} />
-            <label htmlFor="titlenote" className="input-label">Title</label>
+          <div className="add-title">
+            <div className="title-addnote" >
+              <label htmlFor="titlenote" className="input-label">Title</label>
+              <input type="text" name="titlenote" id="titlenote" className="input-field" placeholder="Title" value={title} onChange={handleTitleChange} />
+            </div>
+            <div className="select-add">
+              <p>CATEGORY</p>
+              {printElementSelect}
+            </div>
           </div>
           <div className="note-columns" id="note-columns">
-            <textarea id="note-columns-note" name="columns-note" className="input-notee" rows="15" cols="50" value={main} onChange={handleMainChange} />
             <label htmlFor="columns-note" className="input-label-note">Notes </label>
+            <textarea id="note-columns-note" name="columns-note" className="input-notee" rows="15" cols="50" value={main} onChange={handleMainChange} />
           </div>
-          <div className="cue-columns">
-            <textarea id="cue-columns-note" name="cue-columns-note" className="input-cue" rows="15" cols="50" value={cue} onChange={handleCueChange} />
-            <label htmlFor="cue-columns-note" className="input-label-cue">Keywords</label>
+          <div className="note-columns">
+            <label htmlFor="cue-columns-note" className="input-label-note martop">Keywords</label>
+            <textarea id="cue-columns-note" name="cue-columns-note" className="input-notee" rows="8" cols="50" value={cue} onChange={handleCueChange} />
           </div>
-          <div className="summary">
-            <div className="summary-note">
-              <textarea id="note-summary" type="text" name="summarynote" className="input-summary" placeholder="Summary" rows="8" value={summary} onChange={handleSummaryChange} />
-              <label htmlFor="summarynote" className="input-label-summary">Summary</label>
-            </div>
+          <div className="note-columns">
+              <label htmlFor="summarynote" className="input-label-note martop">Summary</label>
+              <textarea id="note-summary" type="text" name="summarynote" className="input-notee" placeholder="Summary" rows="8" value={summary} onChange={handleSummaryChange} />
           </div>
           <div className="button-sec">
             <div>
-              <button className="note-button" onClick={onSaveNoteHandler}> Save Note </button>
-              <button className="note-button" onClick={handlePrint}> Export to PDF </button>    
+              <button className="note-button martop" onClick={onSaveNoteHandler}> Save Note </button>   
             </div>
           </div>
         </div>

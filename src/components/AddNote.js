@@ -76,28 +76,29 @@ const AddNote = () => {
   return (
     <>
       <section className="addnote-page" ref={componentRef}>
-        <div className="select-add">
-          <h1>CATEGORY </h1>
-          <CreateableReactSelect
-            options={categories !== null && categories.map(category => {
-              return {label: category.name, value:category.id}
-            })}
-            onCreateOption={label => {
-              addCategory(label)
-            }}
-            onChange={onSelectChangeHandler}
-          />         
-        </div>
-      
-     
         <div className="container-addnote">
-          <div className="title-addnote" >
-            <input type="text" name="titlenote" id="titlenote" className="input-field" placeholder="Title" value={title} onChange={handleTitleChange} />
-            <label htmlFor="titlenote" className="input-label">Title</label>
+          <div className="add-title">
+              <div className="title-addnote" >
+                <label htmlFor="titlenote" className="input-label">Title</label>
+                <input type="text" name="titlenote" id="titlenote" className="input-field" value={title} onChange={handleTitleChange} />
+              </div>
+              <div className="select-add">
+              <p>Category</p>
+              <CreateableReactSelect
+                options={categories !== null && categories.map(category => {
+                  return {label: category.name, value:category.id}
+                })}
+                onCreateOption={label => {
+                  addCategory(label)
+                }}
+                onChange={onSelectChangeHandler}
+                className="kategori-add-note"
+              />         
+              </div>
           </div>
           <div className="note-columns" id="note-columns">
-            <textarea id="note-columns-note" name="columns-note" className="input-notee" rows="15" cols="50" value={main} onChange={handleMainChange} />
             <label htmlFor="columns-note" className="input-label-note">Notes </label>
+            <textarea id="note-columns-note" name="columns-note" className="input-notee" rows="15" cols="50" value={main} onChange={handleMainChange} />
           </div>
           <div className="button-sec">
             <div>
