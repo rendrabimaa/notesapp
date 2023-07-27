@@ -9,16 +9,17 @@ function SignUpForm({ signUp }) {
   const [password, handlePasswordChange] = useInput("");
   const [error, setError] = useState('');
 
-  
-
-
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
+    const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
     
-    if (password.length === 0) {
+    if(!fullname.match(emailPattern)){
+      setError('Format email tidak valid.');
+      sweetAlertError('Format email tidak valid.');
+    } else if (password.length === 0) {
       setError('Password harus diisi.');
-      sweetAlertError('Yahh :(', error);
+      sweetAlertError('Password harus diisi.');
     } else if (password.length < 8) {
       setError('Password harus memiliki minimal 8 karakter.');
       sweetAlertError('Password harus memiliki Minimal 8 Karakter');
@@ -41,7 +42,7 @@ function SignUpForm({ signUp }) {
             <div className="input-boxes">
               <div className="input-box">
                 <i className="fas fa-user"></i>
-                <input type="text" placeholder="Enter your name" value={fullname} onChange={handleFullnameChange} required/>
+                <input type="text" placeholder="Enter your email" value={fullname} onChange={handleFullnameChange} required/>
               </div>
               <div className="input-box">
                 <i className="fas fa-envelope"></i>

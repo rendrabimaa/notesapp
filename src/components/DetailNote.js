@@ -1,156 +1,93 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useReactToPrint } from "react-to-print";
-import { editNotes, postNotes } from "../utils/api";
-import useInput from "../hooks/useInput";
-import Select from 'react-select'
 import { getCategories, getNotes } from "../utils/api";
-import { useParams, useNavigate } from "react-router-dom";
-import { sweetAlertError, sweetAlertSuccess } from "../utils/sweet-alert";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { deleteNote } from "../utils/api";
+import { sweetAlertSuccess, sweetConfirm } from "../utils/sweet-alert";
 
-const DetailNote = () => {
-  const { id } = useParams();
+const DetailNote = ({onDelete}) => {
   const navigate = useNavigate();
-
+  const { id } = useParams();
   const componentRef = useRef();
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  })
 
-  const [title, handleTitleChange, setTitle] = useInput("");
-  const [main, handleMainChange, setMain] = useInput("");
-  const [cue, handleCueChange, setCue] = useInput("");
-  const [summary, handleSummaryChange, setSummary] = useInput("");
-  const [notes, setNotes] = React.useState(null);
-  const [categories, setCategories] = React.useState(null);
-  const [category, setCategory] = React.useState("none");
+  const [allNotes, setAllNotes] = useState(null);
+  const [categories, setCategories] = useState(null);
+  const [category, setCategory] = useState("none");
 
-  React.useEffect(() => {
-    async function fetchCategories() {
-      const { data } = await getCategories();
+  useEffect(() => {
+    async function fetchData() {
+      const categoriesResponse = await getCategories();
+      const notesResponse = await getNotes();
 
-      setCategories(data);
+      setCategories(categoriesResponse.data);
+      setAllNotes(notesResponse.data);
     }
 
-    async function fetchNotes() {
-      const { data } = await getNotes();
-
-      const newData = data.filter((note) => {
-        return note.id === id;
-      });
-
-      if (newData.length === 1) {
-        setTitle(newData[0].title);
-        setMain(newData[0].main);
-        setCue(newData[0].cue);
-        setSummary(newData[0].summary);
-        setCategory(newData[0].category_id);
-      } else {
-        document.querySelector('.addnote-page').innerHTML = '<p>Tidak ketemu</p>'
-      }
-
-      setNotes(data);
-    }
-
-    fetchCategories();
-    fetchNotes();
+    fetchData();
   }, []);
 
-  const options = [
-    { value: 'none', label: 'None' }
-  ]
-
-  let printElementSelect = (
-    <Select 
-      options={options} 
-      isDisabled={true}
-      isLoading={true}
-      className="react-select-container" 
-    />
-  );
-
-  if (categories !== null) {
-    for (let i = 0; i < categories.length; i++) {
-      options.push({value: categories[i].id, label: categories[i].name})
-    }
-
-    printElementSelect = (
-      <Select 
-        options={options} 
-        value={options.filter(option => option.value === category)[0]} 
-        onChange={onSelectChangeHandler}
-        isSearchable={false}
-        className="react-select-container" 
-        theme={(theme) => ({
-          ...theme,
-          borderRadius: 0,
-          colors: {
-            ...theme.colors,
-            primary25: 'gray',
-            primary50: '#fff',
-            primary: 'black',
-          },
-        })}
-      />
-    )
+  const handleBackButton = () => {
+    navigate(-1)
   }
 
-  function onSelectChangeHandler(event) {
-    setCategory(event.value);
-  }
-
-  async function onSaveNoteHandler() {
-    const { error, message } = await editNotes({
-      title,
-      cue,
-      main,
-      summary,
-      categoryId: category,
-    }, id);
-
-    if (!error) {
-      navigate('/');
-      return sweetAlertSuccess("Your note is modified", "Success!");
+  const handleDeleteButton = async (id) => {
+    if(!(await sweetConfirm())) {
+      return;
     }
 
-    sweetAlertError(message);
-  }; 
+    await deleteNote(id)
+    sweetAlertSuccess('Your note has been deleted', 'Deleted!');
+    navigate('/');
+  }
+
+  const selectedNote = allNotes ? allNotes.find((note) => note.id === id) : null;
+
+  useEffect(() => {
+    if (selectedNote && categories) {
+      const foundCategory = categories.find((category) => category.id === selectedNote.category_id);
+      if (foundCategory) {
+        setCategory(foundCategory.name);
+      }
+    }
+  }, [selectedNote, categories]);
+
 
   return (
     <>
-      <section className="addnote-page" ref={componentRef}>
-        <div className="container-addnote">
-          <div className="add-title">
-            <div className="title-addnote" >
-              <label htmlFor="titlenote" className="input-label">Title</label>
-              <input type="text" name="titlenote" id="titlenote" className="input-field" placeholder="Title" value={title} onChange={handleTitleChange} />
+      {selectedNote && ( 
+        <section className="detail-page" ref={componentRef}>
+          <div className="container-detail">
+            <div className="header-detail">
+              <div>
+                <p className="notes-title">{selectedNote.title}</p>
+                <p className="notes-category">{category}</p> {/* Display category here */}
+              </div>
+              <div>
+                <Link to={`/edit/${selectedNote.id}`} className="button-detail">Edit</Link>
+                <button className="button-detail" onClick={() => handleDeleteButton(selectedNote.id)}>Hapus</button>
+                <button className="button-detail" onClick={handleBackButton}>Back</button>
+              </div>
             </div>
-            <div className="select-add">
-              <p>CATEGORY</p>
-              {printElementSelect}
+            <div className="body-section">
+              <div className="keyword-section">
+                <p className="keyword-title">Keywords</p>
+                <pre className="keyword-list">{selectedNote.cue}</pre>
+              </div>
+              <div className="text-section">
+                <p className="summary-title">Text Asli</p>
+                <pre className="text-list">{selectedNote.main}</pre>
+              </div>
             </div>
+            <div className="summary-section">
+              <p className="summary-title">Kesimpulan</p>
+              <pre className="summary-list">{selectedNote.summary}</pre>
+                
+              </div>
           </div>
-          <div className="note-columns" id="note-columns">
-            <label htmlFor="columns-note" className="input-label-note">Notes </label>
-            <textarea id="note-columns-note" name="columns-note" className="input-notee" rows="15" cols="50" value={main} onChange={handleMainChange} />
-          </div>
-          <div className="note-columns">
-            <label htmlFor="cue-columns-note" className="input-label-note martop">Keywords</label>
-            <textarea id="cue-columns-note" name="cue-columns-note" className="input-notee" rows="8" cols="50" value={cue} onChange={handleCueChange} />
-          </div>
-          <div className="note-columns">
-              <label htmlFor="summarynote" className="input-label-note martop">Summary</label>
-              <textarea id="note-summary" type="text" name="summarynote" className="input-notee" placeholder="Summary" rows="8" value={summary} onChange={handleSummaryChange} />
-          </div>
-          <div className="button-sec">
-            <div>
-              <button className="note-button martop" onClick={onSaveNoteHandler}> Save Note </button>   
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
-  )
-}
-
+  );
+};
 
 export default DetailNote;

@@ -32,6 +32,7 @@
 }
 
 .title-item{
+  font-weight: 600;
   color: black;
 }
 
@@ -408,7 +409,9 @@ nav {
 }
 
 .note-item-top {
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   margin-bottom: 6px;
 }
 
@@ -438,6 +441,139 @@ nav {
 
 .note-item-right i{
   color: black;
+}
+
+
+.detail-page {
+}
+.container-detail {
+  margin: 0 auto;
+  margin-top: 100px;
+  width: 90%;
+}
+
+.header-detail {
+  display: flex;
+  justify-content: space-between;
+  align-content: start;
+  align-items: start;
+}
+
+.notes-title {
+  font-size: x-large;
+  max-width: 800px;
+  font-weight: 600;
+}
+
+.notes-category {
+  margin-top: 10px;
+  background-color: blue;
+  color: white;
+  font-size: smaller;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.button-detail {
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+
+.button-detail:nth-child(1) {
+  background-color: blue;
+  color: white;
+  margin-right: 10px;
+}
+.button-detail:nth-child(2) {
+  background-color: white;
+  color: red;
+  margin-right: 10px;
+  border: 1px solid red;
+}
+
+.button-detail:nth-child(3) {
+  background-color: white;
+  color: grey;
+  margin-right: 10px;
+  border: 1px solid grey;
+}
+
+.body-section {
+  margin-top: 10px;
+  display: flex;
+  width:100%;
+  border-top: 5px solid grey;
+  
+}
+
+
+.keyword-section {
+  padding: 10px 20px; 
+  width: 20%;
+  padding-top: 20px;
+}
+
+.keyword-title {
+margin-bottom: 20px;
+ font-size: x-large;
+ font-weight: 600;
+}
+
+.keyword-list {
+  color: black;
+  font-size: medium;
+}
+
+.summary-section {
+  padding: 10px 20px;
+  width: 80%;
+}
+
+.summary-title {
+  margin-bottom: 20px;
+ font-size: x-large;
+ font-weight: 600;
+}
+
+pre.summary-list {
+  max-width: 700px; /* Atur lebar maksimum sesuai kebutuhan */
+  overflow: auto; /* Tambahkan overflow: auto untuk menambahkan scroll jika teks terlalu panjang */
+  white-space: pre-wrap;
+}
+
+.text-section {
+  padding: 10px 20px; 
+  padding-top: 20px;
+  border-left: 5px solid grey;
+}
+
+.text-list {
+  height: 300px;
+  overflow: auto;
+  text-align: justify;
+}
+
+pre.text-list {
+  max-width: 1200px; /* Atur lebar maksimum sesuai kebutuhan */
+  overflow: auto; /* Tambahkan overflow: auto untuk menambahkan scroll jika teks terlalu panjang */
+  white-space: pre-wrap;
+}
+
+.summary-section {
+  padding-top: 40px;
+  width: 100%;
+  border-top: 5px solid grey;
+}
+
+.summary-list {
+  color: black;
+  font-size: medium;
+  width: 100%;
 }
 /* LANDING PAGE */
 

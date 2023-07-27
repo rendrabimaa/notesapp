@@ -9,6 +9,7 @@ const LoginPage = lazy(() => import("../pages/LoginPage"));
 const NotesPage = lazy(() => import("../pages/NotesPage"));
 const AddNotePage = lazy(() => import("../pages/AddNotePage"));
 const CategoriesPage = lazy(() => import("../pages/CategoriesPage"));
+const EditNotePage = lazy(() => import("../pages/EditNotePage"));
 const DetailNotePage = lazy(() => import("../pages/DetailNotePage"));
 
 function NoteApp() {
@@ -77,6 +78,7 @@ function NoteApp() {
             <Route path="/*" element={<NotesPage user={authedUser} setUser={setAuthedUser} categoryActive={categoryActive} />} />
             <Route path="/notes/add" element={<AddNotePage user={authedUser} setUser={setAuthedUser} />} />
             <Route path="/note/:id" element={<DetailNotePage user={authedUser} setUser={setAuthedUser} />} />
+            <Route path="/edit/:id" element={<EditNotePage user={authedUser} setUser={setAuthedUser} />} />
             <Route path="/categories" element={<CategoriesPage user={authedUser} setUser={setAuthedUser} setCategoryActive={setCategoryActive} />} />
           </Routes>
         </Suspense>

@@ -34,11 +34,13 @@ function NotesPage({ user, setUser, categoryActive }) {
       setNotes(data);
     }
     fetchNotes();
-    fetchCategories()
+    fetchCategories();
     
   }, []);
 
-
+  React.useEffect(() => {
+    console.log(categories)
+  }, [categories])
 
   async function fetchCategories() {
     const { data } = await getCategories();
@@ -140,11 +142,10 @@ function NotesPage({ user, setUser, categoryActive }) {
     fetchCategories();
   }
 
-  async function onEditCategoryHandle(id, name) {
-    console.log(name)
-    // await editCategories({name}, id)
+  async function onEditCategoryHandle(name, id) {
+    await editCategories({name}, id)
 
-    // fetchCategories();
+    fetchCategories();
   }
 
   return (

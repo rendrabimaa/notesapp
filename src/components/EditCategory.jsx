@@ -2,59 +2,52 @@ import React, { useEffect, useState, useRef } from 'react';
 import { Button, Modal, ListGroup } from 'react-bootstrap';
 import { sweetConfirm } from '../utils/sweet-alert';
 
+
+function deepCopy(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 function EditCategory({categories, onDeleteCategory, onEditCategory}) {
-    // const [categorie, setCategorie] = useState([
-    //   {
-    //     id:1,
-    //     name: 'John'
-    //   },{
-    //     id:2,
-    //     name:'jane'
-    //   },{
-    //     id:3,
-    //     name: 'lol'
-    //   }
-    // ])
-    const [name, setName] = useState("")
-    const [category, setCategory] = useState([])
+    const [editCategory, setEditCategory] = useState([])
+    const [bfrEditCategory, setBfrEditCategory] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        console.log(categories);
-        setCategory(categories);
-    }, [])
+      if(categories !== null ) {
+        const deepCopyCategories = deepCopy(categories);
+        setEditCategory(deepCopyCategories);
+      }
+    }, [categories])
 
-    const handleCloseModal = () => {
-        setShowModal(false);
+    const isCategoryChanged = (bfrEditCategory, editedCategory) => {
+      return bfrEditCategory !== editedCategory
     }
-
-    // const handleEditCategory = (event, index) => {
-    //     const updatedCategory = [...editedCategory];
-    //     updatedCategory[index] = event.target.value;
-
-    //     setCategory(updatedCategory);
-    //     // console.log(inputCategory)
-    // }
 
     const handleDeleteCategory = async (id) => {
       await onDeleteCategory(id)
     }
 
-    const handleEditChange = (event) => {
-      setCategory(event.target.value)
+    const handleEditChange = (value, index) => {
+      setEditCategory((prevCategory) => {
+        const updatedCategory = [...prevCategory]
+        updatedCategory[index].name = value
+        return updatedCategory; 
+      })
+
+      console.log(editCategory[index].name)
+      console.log(categories[index].name)
     }
 
-    const handleEditCategory = (event, id) => {
-      onEditCategory(event.target.value, id) 
-      // const updateData = category.map(item => {
-      //   if(item.id === id) {
-      //     return { ...item, name}
-      //   }
-      //   return item
-      // })
-
-      // setCategory(updateData);
+    const handleCloseModal = () => {
+      categories.forEach(name => {
+        const editCat = editCategory.find((cat) => cat.id === name.id)
+        if(editCat && isCategoryChanged(editCat.name, name.name)) {
+          onEditCategory(editCat.name, editCat.id)
+        }
+      })
+      setShowModal(false);
     }
+  
 
     return (
         <div>
@@ -69,16 +62,18 @@ function EditCategory({categories, onDeleteCategory, onEditCategory}) {
               &times;
             </span>
             <ul>
-                {categories.map((cat, index) => (
+                {editCategory.map((category, index) => (
                     <li key={index} className='list-category-edit' id='edit-list'>
                       {/* <form onSubmit={event => handleSubmit(event, cat.id)}> */}
+                        {/* <label htmlFor={`name${index}`}>Name { index + 1}</label> */}
                         <input type="text" id='edit-input'
                         className='edit-show'
-                        value={cat.name}
-                        onChange={handleEditChange}
+                        name={`name${index}`}
+                        value={category.name}
+                        onChange={(event) => handleEditChange(event.target.value, index)}
                         />
-                        {/* <button id='edit-category-button' onClick={handleEditCategory}>V</button> */}
-                        <button className='delete-category-button' onClick={() => handleDeleteCategory(cat.id)}>&times;</button>
+                        {/* <button id='edit-category-button' >V</button> */}
+                        <button className='delete-category-button' onClick={() => handleDeleteCategory(category.id)}>&times;</button>
 
                       {/* </form> */}
                     </li>
