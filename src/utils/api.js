@@ -1,6 +1,6 @@
 import { sweetAlertError } from "./sweet-alert";
 
-const BASE_URL = "https://notes-app-backend-production-812e.up.railway.app/";
+const BASE_URL = "https://notes-app-backend-production-812e.up.railway.app";
 
 function getAccessToken() {
   return localStorage.getItem("accessToken");
