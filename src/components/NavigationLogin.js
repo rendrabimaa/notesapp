@@ -11,8 +11,6 @@ function NavigationLogin({ user, setUser }) {
     putAccessToken('');
   }
 
-  console.log(user.fullname);
-
   return (
     <div className="nav-login">
       <div className="nav-login__inner">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { getUserLogged, putAccessToken } from "../utils/api";
 import ThemeContext from "../context/ThemeContext";
 import { sweetAlertSuccess } from "../utils/sweet-alert";
@@ -17,6 +17,7 @@ function NoteApp() {
   const [initializing, setInitializing] = React.useState(true);
   const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [categoryActive, setCategoryActive] = React.useState('all');
+  const navigate = useNavigate()
 
   const toggleTheme = () => {
     setTheme((prevTheme) => {
@@ -50,8 +51,8 @@ function NoteApp() {
     const { data } = await getUserLogged();
 
     sweetAlertSuccess('Selamat Anda Telah Berhasil Login', 'Yeayy!!');
-
     setAuthedUser(data);
+    navigate('/');  
   }
 
   if (initializing) {

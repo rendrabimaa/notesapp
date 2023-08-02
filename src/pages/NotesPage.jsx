@@ -7,8 +7,9 @@ import Select from 'react-select'
 import { getCategories, editCategories, getNotes, deleteNote, deleteCategories } from "../utils/api";
 import { useSearchParams } from "react-router-dom";
 import { sweetAlertSuccess, sweetConfirm } from "../utils/sweet-alert";
-import { Button } from "react-bootstrap";
 import EditCategory from "../components/EditCategory";
+import { saveDataToDB, getDataFromIndexedDB } from "../utils/db";
+import { IoIosAddCircle, IoMdClose, IoMdCloseCircle, IoMdRemoveCircle } from "react-icons/io";
 
 function NotesPage({ user, setUser, categoryActive }) {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,26 +28,57 @@ function NotesPage({ user, setUser, categoryActive }) {
     { value: 'all', label: 'All' }
   ]
 
-  React.useEffect(() => {
-    async function fetchNotes() {
-      const { data } = await getNotes();
+  const isOnline = () => navigator.onLine;
 
-      setNotes(data);
-    }
-    fetchNotes();
-    fetchCategories();
+  React.useEffect(() => {
     
+    // const fetchData = () => {
+    //   // const indexedDBNotesData = await getDataFromIndexedDB('notes')
+    //   // const indexedDBCategoriesData = await getDataFromIndexedDB('categories')
+
+    //   if(isOnline()) {
+    //     try {
+    //       fetchDataAndSaveToDB();
+    //     } catch (err) {
+    //       setNotes(getDataFromIndexedDB("notes"))
+    //       setCategories(getDataFromIndexedDB("categories"))
+    //     }
+    //   }
+    // }
+
+    // fetchData();
+
+    fetchDataAndSaveToDB()
   }, []);
 
-  React.useEffect(() => {
-    console.log(categories)
-  }, [categories])
+  async function fetchNotes() {
+    const { data } = await getNotes();
+
+    setNotes(data);
+
+    return data;
+  }
 
   async function fetchCategories() {
     const { data } = await getCategories();
 
     setCategories(data);
+
+    return data;
   }
+
+  async function fetchDataAndSaveToDB() {
+    try {
+      const notesFromAPI = await fetchNotes();
+      const categoriesFromAPI = await fetchCategories();
+      saveDataToDB(notesFromAPI, "notes");
+      saveDataToDB(categoriesFromAPI, "categories");
+
+      console.log('Data berhasil disimpan ke database');
+    } catch (error) {
+      console.error('Gagal menyimpan data ke database:', error);
+    }
+  }  
 
   async function onDeleteHandler(id) {
     if (!(await sweetConfirm())) {
