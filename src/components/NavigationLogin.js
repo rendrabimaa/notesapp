@@ -21,7 +21,7 @@ function NavigationLogin({ user, setUser }) {
             <Link to='/'  className="login-text">Notes</Link>
           </li>
           <li>
-            <button onClick={logoutHandler}>{convertToPascalCase(user.fullname)} <IoMdLogOut className="logoutbutton"/></button>
+            <button onClick={logoutHandler}>{convertToPascalCase(user.username)} <IoMdLogOut className="logoutbutton"/></button>
           </li>
         </ul>
       </div>
