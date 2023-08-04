@@ -13,10 +13,11 @@ const showFormattedDate = (date) => {
 
 function NoteItem({ id, title, time, keywords, summary, onDelete }) {
   return (
-    <div className="note-container">
+    
+    <div className="note-container"  ><Link to={`/note/${id}`} id="note-item-link">
       {/* <div className="note-item-left"> */}
       <div className="note-item-top">
-        <Link to={`/note/${id}`}><p className="title-item">{title}</p></Link>
+        <p className="title-item">{title}</p>
         <i className="fa-solid fa-circle-xmark" onClick={() => onDelete(id)}></i>
       </div>
       <div className="note-date">
@@ -28,8 +29,9 @@ function NoteItem({ id, title, time, keywords, summary, onDelete }) {
       {/* </div> */}
       
         {/* <Link to={`/note/${id}`}><i className="fa-regular fa-pen-to-square"></i></Link> */}
-      
+        </Link>
     </div>
+    
   )
 }
 

@@ -168,7 +168,6 @@ function extractKeywords(text, minKeywords, maxKeywords) {
     }
   }
   console.log(documentFrequency);
-  
   const tfidfScores = calculateTFIDF(tokens, wordFrequency, documentFrequency, 1);
 
   const graph = {};
@@ -231,8 +230,8 @@ function extractSentences(sentences, minSentences, maxSentences) {
   // Remove stopwords from summary sentences
   let summarySentencesWithoutStopwords = summarySentences.map(sentence => {
     const tokens = tokenizeText(sentence);
-    const filteredTokens = removeStopwords(tokens);
-    return filteredTokens.join(' ');
+    // const filteredTokens = removeStopwords(tokens);
+    return tokens.join(' ');
   });
 
   summarySentencesWithoutStopwords = pascalCaseInSentence(summarySentencesWithoutStopwords);

@@ -169,9 +169,15 @@ function NotesPage({ user, setUser, categoryActive }) {
   }
 
   async function onDeleteCategoryHandle(id) {
+    if (!(await sweetConfirm())) {
+      return;
+    }
     await deleteCategories(id);
 
     fetchCategories();
+    
+    sweetAlertSuccess('Your Category has been deleted', 'Deleted!');
+    
   }
 
   async function onEditCategoryHandle(name, id) {

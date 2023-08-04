@@ -38,4 +38,23 @@ async function sweetConfirm() {
   });
 }
 
+async function sweetConfirm2() {
+  return await MySwal.fire({
+    title: "Are you sure?",
+    html: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#694E4E",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+    customClass: {
+      container: "sweet-alert-container",
+    }
+  }).then((result) => {
+    const isConfirm = result.isConfirmed;
+    return isConfirm;
+  });
+}
+
+
 export { sweetAlertSuccess, sweetAlertError, sweetConfirm };
